@@ -74,6 +74,12 @@ class Listings
      * @var ListingsSegment
      */
     private $listingSegment;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="ListingStatus")
+     * @var ListingStatus
+     */
+    private $listingStatus;
 
     /**
      * @ORM\Column(name="created_on", type="datetime", nullable=true)

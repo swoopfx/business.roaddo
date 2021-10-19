@@ -5,12 +5,13 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="listings_category")
+ * @ORM\Table(name="listing_status")
  * @author mac
  *        
  */
-class ListingsCategory
+class ListingStatus
 {
+
     /**
      *
      * @var integer @ORM\Column(name="id", type="integer")
@@ -21,10 +22,10 @@ class ListingsCategory
     private $id;
     
     /**
-     * @ORM\Column(name="category", type="string", nullable=false)
+     * @ORM\Column(name="status", type="string", nullable=false)
      * @var string
      */
-    private $category;
+    private $status;
     
     /**
      */
@@ -42,11 +43,11 @@ class ListingsCategory
     }
 
     /**
-     * @return the $category
+     * @return the $status
      */
-    public function getCategory()
+    public function getStatus()
     {
-        return $this->category;
+        return $this->status;
     }
 
     /**
@@ -59,11 +60,11 @@ class ListingsCategory
     }
 
     /**
-     * @param string $category
+     * @param string $status
      */
-    public function setCategory($category)
+    public function setStatus($status)
     {
-        $this->category = $category;
+        $this->status = $status;
         return $this;
     }
 

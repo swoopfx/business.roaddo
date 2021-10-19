@@ -23,19 +23,17 @@ class UserProfile
     private $id;
     
     
-    private $companyTitle; // equivalent to company name
-    
-    private  $companyProfile;
+    private $fullname; // equivalent to company name
     
     private $profileImage;
     
-    private 
+//     private 
     
     private $createdOn;
     
     private $updatedOn;
     
-    private $
+//     private $
     
     /**
      */

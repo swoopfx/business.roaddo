@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity
  * @ORM\Table(name="business_plan")
- * 
+ *
  * @author mac
  *        
  */
@@ -26,24 +26,28 @@ class BusinessPlan
 
     /**
      * @ORM\Column(name="plan_name", type="string", nullable=false)
+     * 
      * @var string
      */
     private $planName;
-    
+
     /**
      * @ORM\Column(name="duration", type="string", nullable=true)
+     * 
      * @var string
      */
     private $duration;
-    
+
     /**
      * @ORM\Column(name="price", type="string", nullable=true)
+     * 
      * @var string
      */
     private $price;
-    
+
     /**
-     * @ORM\oneToMany(targetEntity="", mappedBy="businessPlan")
+     * @ORM\oneToMany(targetEntity="ListingsBusinessPlanFeature", mappedBy="businessPlan")
+     * 
      * @var Collection
      */
     private $features;
@@ -52,8 +56,105 @@ class BusinessPlan
      */
     public function __construct()
     {
-        
         $this->features = new ArrayCollection();
+    }
+
+    /**
+     *
+     * @return the $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     *
+     * @return the $planName
+     */
+    public function getPlanName()
+    {
+        return $this->planName;
+    }
+
+    /**
+     *
+     * @return the $duration
+     */
+    public function getDuration()
+    {
+        return $this->duration;
+    }
+
+    /**
+     *
+     * @return the $price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     *
+     * @return the $features
+     */
+    public function getFeatures()
+    {
+        return $this->features;
+    }
+
+    /**
+     *
+     * @param number $id            
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     *
+     * @param string $planName            
+     */
+    public function setPlanName($planName)
+    {
+        $this->planName = $planName;
+        return $this;
+    }
+
+    /**
+     *
+     * @param string $duration            
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+        return $this;
+    }
+
+    /**
+     *
+     * @param string $price            
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+        return $this;
+    }
+
+    /**
+     *
+     * @param \Doctrine\Common\Collections\Collection $features            
+     */
+    public function addFeatures(ListingsBusinessPlanFeature $features)
+    {
+        if (! $this->features->contains($features)) {
+            $this->features->add($features);
+            $features->setBusinessPlan($this);
+        }
+        return $this;
     }
 }
 

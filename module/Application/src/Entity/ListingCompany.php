@@ -1,8 +1,13 @@
 <?php
 namespace Application\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use General\Entity\FileUpload;
+
+
 /**
- * This is the company out for sale
+ * @ORM\Entity
+ * @ORM\Table(name="listing_company")
  *
  * @author mac
  *        
@@ -20,16 +25,28 @@ class ListingCompany
     private $id;
 
     /**
-     * @ORM\Column(name="")
+     * @ORM\Column(name="company_title", type="string", nullable=false)
      * @var string
      */
     private $companyTitle;
 
+    /**
+     * @ORM\Column(name="company_profile", type="text", nullable=false)
+     * @var string
+     */
     // equivalent to company name
     private $companyProfile;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="General\Entity\FileUpload")
+     * @var FileUpload
+     */
     private $profileImage;
 
+    /**
+     * 
+     * @var boolean
+     */
     private $isActive;
 
     private $createdOn;
