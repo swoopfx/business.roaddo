@@ -1,5 +1,5 @@
 <?php
-namespace Form\Fieldset;
+namespace User\Form\Fieldset;
 
 use Laminas\Form\Fieldset;
 

@@ -1,24 +1,25 @@
 <?php
- 
+
+echo $this->partial("application/partial/layout_dynamic_header");
  $this->headtitle("Login");
 $form = $this->form;
 $form->setAttribute('action', '' /*$this->url('login') */);
 $form->setAttribute('class', 'form-signin');
 $form->prepare();
-
-$form->get('usernameOrEmail')->setAttributes(array(
+$fieldset = $form->get("userBasicField");
+$fieldset->get('username')->setAttributes(array(
     'class' => 'form-control',
     'placeholder' => $this->translate('Phone Number or Email'),
     'aria-describedby' => 'basic-addon1'
 ));
 
-$form->get('password')->setAttributes(array(
+$fieldset->get('password')->setAttributes(array(
     'class' => 'form-control',
     'placeholder' => $this->translate('Password'),
     'aria-describedby' => 'basic-addon1'
 ));
 
-$form->get('rememberme')->setAttributes(array(
+$fieldset->get('rememberme')->setAttributes(array(
     'class' => 'remember'
 ));
 $form->get('submit')->setAttributes(array(
@@ -56,11 +57,11 @@ echo $this->form()->openTag($form);
 
    <div>
 				
-<?php echo $this->formElement()->render($form->get('usernameOrEmail'));?>
+<?php echo $this->formElement()->render($form->get('username'));?>
 
 </div>
 			<div style="font-size: 9px; color: red;">
-<?php echo $this->formElementErrors($form->get('usernameOrEmail')); ?></div>
+<?php echo $this->formElementErrors($form->get('username')); ?></div>
 
 			 <div>
 				

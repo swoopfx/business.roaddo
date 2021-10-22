@@ -32,5 +32,6 @@ return [
     'DoctrineORMModule',
     'Application',
     "General",
-    "User"
+    "User",
+    "Valuation"
 ];

@@ -1,8 +1,8 @@
 <?php
-namespace Form;
+namespace User\Form;
 
 use Laminas\Form\Form;
-use Form\Fieldset\LoginFieldset;
+use User\Form\Fieldset\LoginFieldset;
 
 /**
  *
@@ -24,7 +24,7 @@ class LoginForm extends Form
     public function init()
     {
         $this->setAttributes([
-            'action' => '',
+//            'action' => '',
             'method' => 'POST',
             "autocomplete" => "off"
         ]);
@@ -34,6 +34,14 @@ class LoginForm extends Form
             'type' => LoginFieldset::class,
             'options' => array(
                 'use_as_base_fieldset' => true
+            )
+        ));
+
+        $this->form->add(array(
+            'name' => 'rememberme',
+            'type' => 'checkbox',
+            'options' => array(
+
             )
         ));
         

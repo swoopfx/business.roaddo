@@ -1,0 +1,24 @@
+
+@import "lib/bootstrap/functions";
+@import "variables";
+
+//lib
+@import 'lib/bootstrap';
+@import 'lib/font-awesome';
+@import 'lib/structure';
+@import 'lib/magnific-popup';
+@import 'lib/slick';
+@import 'lib/jquery-ui-min';
+@import 'lib/animate.min';
+@import 'lib/nice-select';
+
+
+
+//layout
+@import 'layout/_header';
+@import 'layout/_main';
+@import 'layout/_typography';
+@import 'layout/_footer';
+@import 'layout/_page';
+@import 'layout/_dashboard';
+@import 'layout/_responsive';

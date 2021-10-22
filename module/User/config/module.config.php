@@ -2,11 +2,12 @@
 declare(strict_types = 1);
 namespace User;
 
+use User\Form\LoginForm;
 use Laminas\Router\Http\Literal;
 // use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-use Form\Fieldset\LoginFieldset;
-use Form\RegisterForm;
+use User\Form\Fieldset\LoginFieldset;
+use User\Form\RegisterForm;
 use Service\Factory\GeneralFactory;
 use User\Form\Fieldset\UserBasicFieldset;
 use User\Controller\IndexController;
@@ -67,6 +68,7 @@ return [
     "form_elements" => [
         "factories" => [
             LoginFieldset::class => InvokableFactory::class,
+            LoginForm::class=>InvokableFactory::class,
             RegisterForm::class => GeneralFactory::class,
             UserBasicFieldset::class=>GeneralFactory::class,
         

@@ -1,5 +1,5 @@
 <?php
-namespace CsnUser\Form\Fieldset;
+namespace User\Form\Fieldset;
 
 use Laminas\InputFilter\InputFilterProviderInterface;
 use Laminas\Form\Fieldset;

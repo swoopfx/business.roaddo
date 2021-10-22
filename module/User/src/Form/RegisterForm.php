@@ -1,5 +1,5 @@
 <?php
-namespace Form;
+namespace User\Form;
 
 use Laminas\Form\Form;
 use Service\ServiceInterface\GeneralInterface;

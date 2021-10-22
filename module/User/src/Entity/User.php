@@ -1,18 +1,17 @@
 <?php
-
 namespace User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Laminas\Form\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
  */
-
-class User{
-
+class User
+{
 
     /**
      *
@@ -40,28 +39,33 @@ class User{
      */
     protected $username;
 
-    // /**
-    // * @var string
-    // *
-    // * @ORM\Column(name="first_name", type="string", length=40, nullable=true)
-    // * @Annotation\Type("Laminas\Form\Element\Text")
-    // * @Annotation\Filter({"name":"StripTags"})
-    // * @Annotation\Filter({"name":"StringTrim"})
-    // * @Annotation\Validator({"name":"StringLength", "options":{ "encoding":"UTF-8", "max":40}})
-    // */
-    // protected $firstName;
-    
-    // /**
-    // * @var string
-    // *
-    // * @ORM\Column(name="last_name", type="string", length=40, nullable=true)
-    // * @Annotation\Type("Laminas\Form\Element\Text")
-    // * @Annotation\Filter({"name":"StripTags"})
-    // * @Annotation\Filter({"name":"StringTrim"})
-    // * @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "max":40}})
-    // */
-    // protected $lastName;
-    
+    /**
+     *
+     * @var string @ORM\Column(name="first_name", type="string", length=40, nullable=true)
+     *      @Annotation\Type("Laminas\Form\Element\Text")
+     *      @Annotation\Filter({"name":"StripTags"})
+     *      @Annotation\Filter({"name":"StringTrim"})
+     *      @Annotation\Validator({"name":"StringLength", "options":{ "encoding":"UTF-8", "max":40}})
+     */
+    protected $firstName;
+
+    /**
+     *
+     * @var string @ORM\Column(name="last_name", type="string", length=40, nullable=true)
+     *      @Annotation\Type("Laminas\Form\Element\Text")
+     *      @Annotation\Filter({"name":"StripTags"})
+     *      @Annotation\Filter({"name":"StringTrim"})
+     *      @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "max":40}})
+     */
+    protected $lastName;
+
+    /**
+     * @ORM\Column(name="phone_number", type="string", nullable=true)
+     * 
+     * @var string
+     */
+    protected $phoneNumber;
+
     /**
      *
      * @var string @ORM\Column(name="email", type="string", length=60, nullable=false, unique=true)
@@ -232,18 +236,18 @@ class User{
     protected $myFriends;
 
     // /**
-    //  * @ORM\OneToOne(targetEntity="Users\Entity\IndividualInfo")
-    //  *
-    //  * @var IndividualInfo
-    //  */
+    // * @ORM\OneToOne(targetEntity="Users\Entity\IndividualInfo")
+    // *
+    // * @var IndividualInfo
+    // */
     
     // // protected $indInfo;
     
     // /**
-    //  * @ORM\OneToOne(targetEntity="Users\Entity\CompanyInfo")
-    //  *
-    //  * @var CompanyInfo
-    //  */
+    // * @ORM\OneToOne(targetEntity="Users\Entity\CompanyInfo")
+    // *
+    // * @var CompanyInfo
+    // */
     // protected $comInfo;
     
     // /**
@@ -268,15 +272,15 @@ class User{
     private $isProfiled;
 
     // /**
-    //  * @ORM\OneToOne(targetEntity="GeneralServicer\Entity\BrokerChild", mappedBy="user", cascade={"persist", "remove"})
-    //  *
-    //  * @var BrokerChild
-    //  */
+    // * @ORM\OneToOne(targetEntity="GeneralServicer\Entity\BrokerChild", mappedBy="user", cascade={"persist", "remove"})
+    // *
+    // * @var BrokerChild
+    // */
     // private $brokerChild;
-
+    
     /**
      * @ORM\OneToOne(targetEntity="User\Entity\Lastlogin", mappedBy="user", cascade={"persist", "remove"})
-     * 
+     *
      * @var Lastlogin
      */
     private $lastlogin;
@@ -289,7 +293,7 @@ class User{
     
     /**
      * @ORM\Column(name="updated_on", type="datetime", nullable=true)
-     * 
+     *
      * @var \DateTime
      */
     private $updatedOn;
@@ -298,8 +302,6 @@ class User{
     {
         $this->friendsWithMe = new ArrayCollection();
         $this->myFriends = new ArrayCollection();
-        // $this->brokerChild = new ArrayCollection();
-        // $this->brokerChildProfile = new ArrayCollection();
     }
 
     /**
@@ -781,10 +783,9 @@ class User{
         $this->updatedOn = $date;
         return $this;
     }
-    
+
     public function getRoles()
     {}
-
     
     // public function addBrokerChild(){
     
@@ -793,5 +794,4 @@ class User{
     // public function removeBrokerChild(){
     
     // }
-
 }

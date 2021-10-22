@@ -5,6 +5,10 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * 
+ * Franchise
+ * Business
+ * 
  * @ORM\Entity
  * @ORM\Table(name="listings_segment")
  * @author mac

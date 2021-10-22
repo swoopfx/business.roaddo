@@ -6,6 +6,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
+ * This is the defined package for subscriptiion 
+ * 
  * @ORM\Entity
  * @ORM\Table(name="business_plan")
  *

@@ -25,9 +25,13 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $this->recognitionService->implement();
-        var_dump($this->recognitionService->getCountryRoute());
+//        var_dump($this->recognitionService->getCountryRoute());
 //         $this->url()->fromRoute("home");
-        return new ViewModel();
+        return new ViewModel(
+            array(
+                "countryRoutes"=>$this->recognitionService->getCountryRoute()
+            )
+        );
     }
     
     

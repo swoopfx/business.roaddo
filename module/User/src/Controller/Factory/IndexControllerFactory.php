@@ -1,5 +1,6 @@
 <?php
 namespace User\Controller\Factory;
+use User\Form\LoginForm;
 use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use User\Controller\IndexController;
@@ -14,6 +15,8 @@ class IndexControllerFactory implements FactoryInterface
     {
         $ctr = new IndexController();
         $generalService = $container->get(GeneralService::class);
+        $loginForm = $container->get(LoginForm::class);
+        $ctr->setLoginForm($loginForm)->setGeneralService($generalService);
         return $ctr;
     }
 }
