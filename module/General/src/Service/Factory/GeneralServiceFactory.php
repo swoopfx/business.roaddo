@@ -1,5 +1,5 @@
 <?php
-namespace Service\Factory;
+namespace General\Service\Factory;
 
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
@@ -13,6 +13,8 @@ use General\Service\GeneralService;
 class GeneralServiceFactory implements FactoryInterface
 {
 
+    private  $auth;
+
     /**
      * (non-PHPdoc)
      *
@@ -24,6 +26,7 @@ class GeneralServiceFactory implements FactoryInterface
         $xser = new GeneralService();
         $em = $container->get('doctrine.entitymanager.orm_default');
         $auth = $container->get('Laminas\Authentication\AuthenticationService');
+        $this->auth = $auth;
         $user = $this->getUserEntity();
         $xser->setEntityManager($em)
             ->setAuth($auth)

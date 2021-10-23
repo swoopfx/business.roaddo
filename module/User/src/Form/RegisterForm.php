@@ -2,22 +2,21 @@
 namespace User\Form;
 
 use Laminas\Form\Form;
-use Service\ServiceInterface\GeneralInterface;
-use CsnUser\Form\Fieldset\UserBasicFieldset;
+use User\Form\Fieldset\UserBasicFieldset;
 
 /**
  *
  * @author mac
  *        
  */
-class RegisterForm extends Form implements  GeneralInterface
+class RegisterForm extends Form
 {
 
     // TODO - Insert your code here
     
     public function init(){
         $this->setAttributes(array(
-            'action'=>'',
+//            'action'=>'',
             'method'=>'POST',
             "autocomplete"=>"off"
         ));
@@ -34,14 +33,14 @@ class RegisterForm extends Form implements  GeneralInterface
             )
         ));
         
-        $this->add(array(
-            'name'=>'securityQuestion',
-            'type'=>'',
-        ));
+//        $this->add(array(
+//            'name'=>'securityQuestion',
+//            'type'=>'',
+//        ));
     }
     
     public function addCommon(){
-        $this->form->add(array(
+        $this->add(array(
             'name' => 'csrf',
             'type' => 'Laminas\Form\Element\Csrf',
             'options' => array(
@@ -53,7 +52,7 @@ class RegisterForm extends Form implements  GeneralInterface
         
         
         
-        $this->form->add(array(
+        $this->add(array(
             'name' => 'submit',
             'type' => 'Laminas\Form\Element\Submit',
             'attributes' => array(
@@ -61,15 +60,7 @@ class RegisterForm extends Form implements  GeneralInterface
             )
         ));
     }
-    /**
-     * {@inheritDoc}
-     * @see \Service\ServiceInterface\GeneralInterface::setGeneralService()
-     */
-    public function setGeneralService($gs)
-    {
-        
-        
-    }
+
 
 }
 

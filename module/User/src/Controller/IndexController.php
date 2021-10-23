@@ -17,6 +17,12 @@ class IndexController extends AbstractActionController
 {
 
     /**
+     *
+     * @var UserService
+     */
+    private $userService;
+
+    /**
      * 
      * @var LoginForm
      */
@@ -79,11 +85,7 @@ class IndexController extends AbstractActionController
         return $this->userService;
     }
     
-    /**
-     * 
-     * @var UserService
-     */
-    private $userService;
+
     
 
 
@@ -94,6 +96,8 @@ class IndexController extends AbstractActionController
             "form"=>$form
         ]);
     }
+
+//    pubic function
     
     /**
      */

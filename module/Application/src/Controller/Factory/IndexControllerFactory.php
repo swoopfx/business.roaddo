@@ -27,7 +27,8 @@ class IndexControllerFactory implements FactoryInterface
     {
         
        $ctr = new IndexController();
-       $generalService = $container->get(GeneralService::class);
+       $generalService = $container->get("General\Service\GeneralService");
+       var_dump($generalService);
        $recogService = $container->get(RecognitionService::class);
        $ctr->setRecognitionService($recogService);
        return $ctr;

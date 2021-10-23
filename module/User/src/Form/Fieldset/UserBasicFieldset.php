@@ -1,4 +1,5 @@
 <?php
+
 namespace User\Form\Fieldset;
 
 use Laminas\InputFilter\InputFilterProviderInterface;
@@ -9,7 +10,8 @@ use DoctrineModule\Validator\NoObjectExists;
 use Laminas\Validator\Identical;
 use Doctrine\Laminas\Hydrator\DoctrineObject;
 use User\Entity\User;
-use Service\ServiceInterface\GeneralInterface;
+
+//use Service\ServiceInterface\GeneralInterface;
 use General\Service\GeneralService;
 use Doctrine\ORM\EntityManager;
 use Laminas\Form\Element\Checkbox;
@@ -17,9 +19,9 @@ use Laminas\Form\Element\Checkbox;
 /**
  *
  * @author swoopfx
- *        
+ *
  */
-class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface, GeneralInterface
+class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
 {
 
     /**
@@ -36,7 +38,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
 
     public function init()
     {
-        $this->entityManager = $this->generalService->getEntityManager();
+//
         $hydrator = new DoctrineObject($this->entityManager);
         $this->setHydrator($hydrator)->setObject(new User());
         $this->addFields();
@@ -92,7 +94,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                 'class' => 'form-control col-md-9 col-xs-12'
             )
         ));
-        
+
         $this->add(array(
             'name' => 'passwordVerify',
             'type' => 'Laminas\Form\Element\Password',
@@ -108,7 +110,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                 'required' => 'required'
             )
         ));
-        
+
         $this->add([
             "name" => "newsletter",
             "type" => Checkbox::class,
@@ -120,30 +122,26 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
             ],
             'attributes' => [
                 'class' => 'form-control col-md-9 col-xs-12'
-            
+
             ]
         ]);
-        $this->add(array(
-            'name' => 'brokerChild',
-            'type' => 'BrokersTool\Form\Fieldset\BrokerChildFieldset'
-        ));
-        
-        $this->add(array(
-            'name' => 'usernameOrEmail',
-            'type' => 'text',
-            'options' => array(
-                'label' => 'Username',
-                'label_attributes' => array(
-                    'class' => ''
-                )
-            ),
-            'attributes' => array(
-                'class' => 'form-control col-md-9 col-xs-12',
-                'id' => 'username',
-                'required' => 'required',
-                'title' => 'Provide Staffs phone number'
-            )
-        ));
+
+//        $this->add(array(
+//            'name' => 'usernameOrEmail',
+//            'type' => 'text',
+//            'options' => array(
+//                'label' => 'Username',
+//                'label_attributes' => array(
+//                    'class' => ''
+//                )
+//            ),
+//            'attributes' => array(
+//                'class' => 'form-control col-md-9 col-xs-12',
+//                'id' => 'username',
+//                'required' => 'required',
+//                'title' => 'Provide Staffs phone number'
+//            )
+//        ));
     }
 
     /**
@@ -181,7 +179,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                     )
                 )
             ),
-            
+
             "passwordVerify" => array(
                 "required" => true,
                 "allow_empty" => false,
@@ -242,7 +240,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                                 'email'
                             ),
                             'messages' => array(
-                                
+
                                 NoObjectExists::ERROR_OBJECT_FOUND => 'Someone else is registered with this email'
                             )
                         )
@@ -258,19 +256,19 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                                 StringLength::TOO_LONG => 'We dont think this is a genuine email'
                             )
                         ),
-                        
+
                         array(
                             'name' => 'EmailAddress',
-                            
+
                             'options' => array(
-                                
+
                                 'messages' => array(
                                     EmailAddress::INVALID_FORMAT => 'Please check your email something is not right'
                                 )
                             )
                         )
                     )
-                
+
                 )
             ),
             'username' => array(
@@ -287,7 +285,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                 ),
                 'validators' => array(
                     array(
-                        
+
                         'name' => 'DoctrineModule\Validator\NoObjectExists',
                         'options' => array(
                             'use_context' => false,
@@ -302,7 +300,7 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                             )
                         )
                     ),
-                    
+
                     array(
                         'name' => 'StringLength',
                         'options' => array(
@@ -319,16 +317,40 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
         );
     }
 
-    public function setGeneralService($xserv)
+    /**
+     * @return EntityManager
+     */
+    public function getEntityManager(): EntityManager
     {
-        $this->generalService = $xserv;
+        return $this->entityManager;
+    }
+
+    /**
+     * @param EntityManager $entityManager
+     */
+    public function setEntityManager(EntityManager $entityManager): UserBasicFieldset
+    {
+        $this->entityManager = $entityManager;
         return $this;
     }
-    
-    // public function setEntityManager($em)
-    // {
-    // $this->entityManager = $em;
-    // return $this;
-    // }
+
+    /**
+     * @return GeneralService
+     */
+    public function getGeneralService(): GeneralService
+    {
+        return $this->generalService;
+    }
+
+    /**
+     * @param GeneralService $generalService
+     */
+    public function setGeneralService(GeneralService $generalService): UserBasicFieldset
+    {
+        $this->generalService = $generalService;
+        return $this;
+    }
+
+
 }
 

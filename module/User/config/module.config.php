@@ -2,20 +2,26 @@
 declare(strict_types = 1);
 namespace User;
 
+use User\Form\Fieldset\Factory\TestFactory;
+use User\Form\Fieldset\Factory\UserBasicFieldsetFactory;
 use User\Form\LoginForm;
 use Laminas\Router\Http\Literal;
 // use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 use User\Form\Fieldset\LoginFieldset;
 use User\Form\RegisterForm;
-use Service\Factory\GeneralFactory;
+//use Service\Factory\GeneralFactory;
 use User\Form\Fieldset\UserBasicFieldset;
 use User\Controller\IndexController;
 use User\Controller\Factory\IndexControllerFactory;
+use User\Controller\RegisterController;
+use User\Controller\Factory\RegisterControllerFactory;
 return [
     'controllers' => [
         'factories' => [
-            IndexController::class => IndexControllerFactory::class
+            IndexController::class => IndexControllerFactory::class,
+            RegisterController::class => RegisterControllerFactory::class,
+
         ]
     ],
     'router' => [
@@ -33,6 +39,22 @@ return [
                 'may_terminate' => true,
                 'child_routes' => [ // You can place additional routes that match under the
                                         // route defined above here.
+                ]
+            ],
+
+            'user-register' => [
+                'type' => 'Literal',
+                'options' => [
+                    // Change this to something specific to your module
+                    'route' => '/register',
+                    'defaults' => [
+                        'controller' => RegisterController::class,
+                        'action' => 'index'
+                    ]
+                ],
+                'may_terminate' => true,
+                'child_routes' => [ // You can place additional routes that match under the
+                    // route defined above here.
                 ]
             ],
             
@@ -66,12 +88,12 @@ return [
     ],
     
     "form_elements" => [
-        "factories" => [
+        'factories' => [
             LoginFieldset::class => InvokableFactory::class,
             LoginForm::class=>InvokableFactory::class,
-            RegisterForm::class => GeneralFactory::class,
-            UserBasicFieldset::class=>GeneralFactory::class,
-        
+            RegisterForm::class => InvokableFactory::class,
+            UserBasicFieldset::class=>UserBasicFieldsetFactory::class,
+
         ]
     ],
     'doctrine' => [

@@ -1,7 +1,8 @@
 <?php
 
 echo $this->partial("application/partial/layout_dynamic_header");
- $this->headtitle("Login");
+$this->headtitle("Login");
+
 $form = $this->form;
 $form->setAttribute('action', '' /*$this->url('login') */);
 $form->setAttribute('class', 'form-signin');
@@ -19,12 +20,12 @@ $fieldset->get('password')->setAttributes(array(
     'aria-describedby' => 'basic-addon1'
 ));
 
-$fieldset->get('rememberme')->setAttributes(array(
+$form->get('rememberme')->setAttributes(array(
     'class' => 'remember'
 ));
 $form->get('submit')->setAttributes(array(
-    'class' => 'btn btn-default submit btn-block',
-    "style"=>"width: 80%",
+    'class' => 'btn btn-primary d-block',
+//    "style" => "width: 80%",
     'value' => $this->translate('Log In')
 ));
 
@@ -32,90 +33,77 @@ $form->get('submit')->setAttributes(array(
 
 
 
-		
-
-			
-			
- 
-	<?php  echo $this->partial("general-error-ponters")?>
 
 
-					 
 
- <div class="animate form login_form">
-          <section class="login_content">
-			<br>
-	<img src="<?php  echo $this->basepath("/images/cm.png")?>" width=150 />
 
- 
 
-	<?php
+<?php // echo $this->partial("general-error-ponters")?>
 
-echo $this->form()->openTag($form);
-?>
-<h1>Login Form</h1>
+<div class="lt-page-content bg-color">
+    <div class="lt-section">
+        <div class="section-content lt-account section-padding">
+            <div class="account-content bg-white">
+                <h2>Login Into Account</h2>
+                <form action="#" class="lt-form">
 
-   <div>
-				
-<?php echo $this->formElement()->render($form->get('username'));?>
+                    <div class="form-group">
 
-</div>
-			<div style="font-size: 9px; color: red;">
-<?php echo $this->formElementErrors($form->get('username')); ?></div>
+                        <?php echo $this->formElement()->render($fieldset->get('username')); ?>
+                        <div class="input-addon">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        </div>
+                        <div style="font-size: 9px; color: red;">
+                            <?php echo $this->formElementErrors($fieldset->get('username')); ?></div>
+                    </div>
 
-			 <div>
-				
-<?php echo $this->formElement()->render($form->get('password'));?>
+                    <div class="form-group">
+                        <?php echo $this->formElement()->render($fieldset->get('password')); ?>
+                        <div class="input-addon">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </div>
+                        <div style="font-size: 9px; color: red;">
+                            <?php echo $this->formElementErrors($fieldset->get('password')); ?></div>
+                    </div>
+                    <div class="form-group tnc">
+                        <?php
+                        echo $this->formRow($form->get('rememberme'));
+                        ?>
+                        <label for="tnc">Remember Me</label>
+                    </div>
+                    <?php echo $this->formSubmit($form->get('submit')) ?>
+                    <!--                    <a href="dashboard.html" class="">Login</a>-->
+                    <div class="social-connect">
+                        <a class="facebook" href="#"> <i class="fa fa-facebook" aria-hidden="true"></i> Connect With
+                            Facebook</a>
+                        <a class="google-plus" href="#"> <i class="fa fa-google-plus" aria-hidden="true"></i> Connect
+                            With Google</a>
+                    </div>
+                    <div class="account-link justify-content-between d-flex">
+                        <span>Don’t have an account? <a href="<?php echo $this->url("user-register") ?>" class="color">Sign up</a></span>
+                        <span><a href="#">Forgot Password? </a></span>
+                    </div>
+                </form>
+                <?php
 
-</div>
-			<div style="font-size: 9px; color: red;">
-<?php echo $this->formElementErrors($form->get('password')); ?></div>
-<div>
+                if ($this->messages) {
+                    echo '<div style="font-size: 14px; color: red;">' . $this->messages . '</div>';
+                    echo '<div style="font-size: 14px; color: red;">' . $this->error . '</div>';
+                };
+                ?>
+            </div><!-- container -->
+        </div><!-- lt-agent-details -->
+    </div><!-- lt-section -->
+</div><!-- /.lt-page-content -->
+
+
 <?php
-
-echo $this->formRow($form->get('rememberme'));
-
-
-?>
-</div>
-			<div style="font-size: 9px; color: red;">
-<?php echo $this->formElementErrors($form->get('password')); ?></div>
- <div>
-<?php echo  $this->formSubmit($form->get('submit'))?>
-</div>
-
-			<p><a href="<?php  echo $this->url("user-register", array("action"=>"reset-password"))?>">Forgot Password</p>		 
-  <div class="clearfix"></div>
-
-              <div class="separator">
-                <p class="change_link">New to site?
-                  <a href="<?php  echo $this->url('user-register')?>" class="to_register"> Create Account </a>
-                </p>
-
-                <div class="clearfix"></div>
-                <br />
-
-                
-              </div>
-
-			
-	
-<?php
-
-if ($this->messages) {
-    echo '<div style="font-size: 14px; color: red;">' . $this->messages . '</div>';
-    echo '<div style="font-size: 14px; color: red;">' . $this->error . '</div>';
-}
-;
-?>
-
- <?php
 echo $this->formRow($form->get('csrf'));
 echo $this->form()->closeTag();
-?> 
+?>
 
- 
-        </div>
+
+
 
 
 

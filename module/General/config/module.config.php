@@ -1,11 +1,12 @@
 <?php
 namespace  General;
 use General\Service\GeneralService;
-use Service\Factory\GeneralServiceFactory;
+use General\Service\Factory\GeneralServiceFactory;
 
 return [
     
    'service_manager' => [
+
        'factories' => [
            GeneralService::class=>GeneralServiceFactory::class,
        ],

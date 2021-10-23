@@ -29,12 +29,14 @@ class LoginFieldset extends Fieldset implements InputFilterProviderInterface
 //     public function __construct($name = null, $options = null)
 //     {
 //         parent::__construct($name = null, $options = null);
-//         // TODO - Insert your code here
+//
 //     }
 
-    public function init(){
-//         $hydrator = new DoctrineObject($this->entityManager);
 
+
+    public function __construct($name = null, $options = null){
+//         $hydrator = new DoctrineObject($this->entityManager);
+        parent::__construct($name = null, $options = null);
         $this->add(array(
             'name' => 'username',
             'type' => 'text',

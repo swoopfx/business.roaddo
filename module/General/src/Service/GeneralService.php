@@ -44,7 +44,7 @@ class GeneralService
     /**
      * @return the $entityManager
      */
-    public function getEntityManager()
+    public function getEntityManager():EntityManager
     {
         return $this->entityManager;
     }

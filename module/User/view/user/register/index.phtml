@@ -1,0 +1,61 @@
+<?php
+echo $this->partial("application/partial/layout_dynamic_header");
+echo $this->headtitle("Register");
+
+?>
+
+
+<div class="lt-page-content bg-color">
+    <div class="lt-section">
+        <div class="section-content lt-account section-padding">
+            <div class="account-content bg-white">
+                <h2>Sign Up For Account</h2>
+                <form action="#" class="lt-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="User Name">
+                        <div class="input-addon">
+                            <i class="fa fa-user-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email Address ">
+                        <div class="input-addon">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password">
+                        <div class="input-addon">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Repeat-Password">
+                        <div class="input-addon">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option value="subscriber">Subscriber Type </option>
+                            <option value="visitor">Visitor</option>
+                            <option value="customer">Customer</option>
+                        </select>
+                    </div>
+                    <div class="form-group tnc">
+                        <input type="checkbox" name="tnc" id="tnc">
+                        <label for="tnc">I agree with <a href="#">* terms & conditions</a></label>
+                    </div>
+                    <input type="submit" value="Sign Up" class="btn btn-primary">
+                    <div class="account-link justify-content-between d-flex">
+                        <span>Have an account? <a href="<?= $this->url("login")?>" class="color">Login</a></span>
+                    </div>
+                </form>
+            </div><!-- container -->
+        </div><!-- lt-agent-details -->
+    </div><!-- lt-section -->
+</div><!-- /.lt-page-content -->

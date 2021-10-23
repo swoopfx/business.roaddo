@@ -15,7 +15,7 @@ class IndexControllerFactory implements FactoryInterface
     {
         $ctr = new IndexController();
         $generalService = $container->get(GeneralService::class);
-        $loginForm = $container->get(LoginForm::class);
+        $loginForm = $container->get('FormElementManager')->get(LoginForm::class);
         $ctr->setLoginForm($loginForm)->setGeneralService($generalService);
         return $ctr;
     }

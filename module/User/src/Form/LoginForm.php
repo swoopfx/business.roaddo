@@ -12,17 +12,19 @@ use User\Form\Fieldset\LoginFieldset;
 class LoginForm extends Form
 {
 
-    // TODO - Insert your code here
+
+
+
     
-    // /**
-    // */
-    // public function __construct()
-    // {
+
     
-    // // TODO - Insert your co
+
     // }
-    public function init()
-    {
+    public function __construct($name = null, $options = null){
+//         $hydrator = new DoctrineObject($this->entityManager);
+        parent::__construct($name = null, $options = null);
+
+
         $this->setAttributes([
 //            'action' => '',
             'method' => 'POST',
@@ -37,7 +39,7 @@ class LoginForm extends Form
             )
         ));
 
-        $this->form->add(array(
+        $this->add(array(
             'name' => 'rememberme',
             'type' => 'checkbox',
             'options' => array(
@@ -45,7 +47,7 @@ class LoginForm extends Form
             )
         ));
         
-        $this->form->add(array(
+        $this->add(array(
             'name' => 'csrf',
             'type' => 'Laminas\Form\Element\Csrf',
             'options' => array(
@@ -55,11 +57,15 @@ class LoginForm extends Form
             )
         ));
         
-        $this->form->add(array(
+        $this->add(array(
             'name' => 'submit',
             'type' => 'Laminas\Form\Element\Submit',
+            'options'=>array(
+                "class"=>"btn btn-primary d-block"
+            ),
             'attributes' => array(
-                'type' => 'submit'
+                'type' => 'submit',
+
             )
         ));
     }
