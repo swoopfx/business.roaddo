@@ -2,6 +2,10 @@
 declare(strict_types = 1);
 namespace Application;
 
+use Application\Controller\Factory\ListingsControllerFactory;
+use Application\Controller\ListingsController;
+use Application\Service\Factory\ListingsSearchServiceFactory;
+use Application\Service\ListingsSearchService;
 use Application\View\Helper\Factory\FlagHelperFactory;
 use Application\View\Helper\FlagHelper;
 use Laminas\Router\Http\Literal;
@@ -32,6 +36,17 @@ return [
                         'action' => 'index'
                     ]
                 ]
+            ],
+            'listings' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route' => '/listings',
+                    'defaults' => [
+                        'controller' => ListingsController::class,
+                        'action' => 'search',
+
+                    ]
+                ]
             ]
         ]
     ],
@@ -40,12 +55,14 @@ return [
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => IndexControllerFactory::class
+            Controller\IndexController::class => IndexControllerFactory::class,
+            ListingsController::class=>ListingsControllerFactory::class
         ]
     ],
     'service_manager' => array(
         'factories' => array(
-            RecognitionService::class => RecognitionServiceFactory::class
+            RecognitionService::class => RecognitionServiceFactory::class,
+            ListingsSearchService::class=>ListingsSearchServiceFactory::class,
         )
     ),
     "view_helpers"=>[
@@ -71,6 +88,7 @@ return [
             "application/partial/layout_footer"=>__DIR__ . '/../view/layout/partials/layout_footer_partial.phtml',
             "application/partial/layout_menu"=>__DIR__ . '/../view/layout/partials/layout_header_menu.phtml',
             "application/partial/layout_search_form_header"=>__DIR__ . '/../view/layout/partials/layout_serach_header.phtml',
+            "application/partial/layout_searchbar"=>__DIR__ . '/../view/layout/partials/layout_header_searchbar.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml'
         ],

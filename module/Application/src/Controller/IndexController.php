@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
 use Application\Service\RecognitionService;
 
@@ -33,12 +34,16 @@ class IndexController extends AbstractActionController
             )
         );
     }
-    
-    
-    public function testAction(){
-        var_dump($this->recognitionService->getCountryRoute());
-        return new ViewModel();
+
+
+
+    public function getsAction(){
+        $viewmodel = new ViewModel();
+        return $viewmodel;
     }
+    
+    
+
     /**
      * @return the $genealService
      */

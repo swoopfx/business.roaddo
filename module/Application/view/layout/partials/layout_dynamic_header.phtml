@@ -4,67 +4,20 @@
             <div class="d-flex justify-content-between">
                 <div class="left-content">
                     <ul class="global-list">
-                        <li><span class="icon"><img src="assets/images/others/icon1.png" alt="Image" class="img-fluid"></span><a
-                                    href="tel:+9985260948">+99 852 60948</a></li>
-                        <li><span class="icon"><img src="assets/images/others/icon2.png" alt="Image" class="img-fluid"></span><a
-                                    href="#">info@gmail.com</a></li>
+                        <li><span class="icon"><img src="assets/images/logo.png" alt="Logo" class="img-fluid"></li>
                     </ul>
                 </div><!-- /.left-content -->
                 <div class="right-content align-self-center">
                     <div class="topbar-user">
-                        <span><a href="<?= $this->url("login") ?> ">Login</a> | <a
-                                    href="sign-up.html">Sign Up</a></span>
+                        <span> <?= $this->defaultFlagRoute() ?></span> | <span> <a href="<?= $this->url("login") ?> ">Login</a> | <a
+                                    href="<?= $this->url("user-register")?>>">Sign Up</a></span>
                     </div><!-- /.topbar-user -->
                 </div><!-- /.right-content -->
             </div>
         </div><!-- /.container -->
     </div><!-- /.tl-topbar -->
 
-    <div class="header-middle">
-        <div class="container">
-            <div class="lt-logo">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo.png" alt="Logo" class="img-fluid">
-                </a>
-            </div>
-            <div class="contacts align-self-center">
-                <ul class="global-list">
-                    <!--                    <li>-->
-                    <!--                        <div class="info-box">-->
-                    <!--                            <div class="icon">-->
-                    <!--                                <i class="fa fa-clock-o" aria-hidden="true"></i>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="text align-self-center">-->
-                    <!--                                <span>08:00 AM - 06: 00 PM</span>-->
-                    <!--                                <strong>Monday - Friday</strong>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </li>-->
-                    <li>
-                        <div class="info-box">
-                            <div class="icon">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            </div>
-                            <div class="text align-self-center">
-                                <?= $this->defaultFlagRoute() ?>
-                            </div>
-                        </div>
-                    </li>
-                    <!--                    <li>-->
-                    <!--                        <div class="info-box">-->
-                    <!--                            <div class="icon">-->
-                    <!--                                <i class="fa fa-phone" aria-hidden="true"></i>-->
-                    <!--                            </div>-->
-                    <!--                            <div class="text align-self-center">-->
-                    <!--                                <span>Service Available</span>-->
-                    <!--                                <strong>(+00)888.666.88</strong>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </li>-->
-                </ul>
-            </div><!-- /.contacts -->
-        </div>
-    </div><!-- /.header-middle -->
+
 
 
     <?php if (isset($extraTemplate)) {

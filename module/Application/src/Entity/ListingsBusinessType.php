@@ -5,7 +5,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Application\Entity\ListingsSegment;
 
 /**
- *
+ * Retail business
+ * ServiceBusiness
  *
  *
  * @ORM\Entity
