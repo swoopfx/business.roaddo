@@ -31,9 +31,10 @@ class ListingsFranchiseDetails
     
     /**
      * 
-     * @var unknown
+     * @var
      */
     private $franchiseNews;
+
     
     private $franchiseVideo;
     

@@ -5,13 +5,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Application\Entity\ListingsSegment;
 
 /**
- * Retail Shop Business;
- * Accommodation,
- * Licensed & Leisure ,
- * Agriculture, Farming & Marine ,
- * Animal & Pest
- * Building & Construction
- * Fashion, Clothing & Footwear
  *
  *
  *

@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Active
  * InActive
  * Processing
+ * Evaluating
+ *
  * 
  * @ORM\Entity
  * @ORM\Table(name="listing_status")
