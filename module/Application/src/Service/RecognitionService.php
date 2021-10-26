@@ -65,7 +65,7 @@ class RecognitionService
     {
         $ip = $this->getIPAddress();
         
-        $ip = "197.210.45.47";
+//        $ip = "197.210.45.47";
         $details = $this->getIpDetails($ip);
         
         $countryRoute = [];

@@ -48,7 +48,7 @@ class BusinessPlan
     private $price;
 
     /**
-     * @ORM\oneToMany(targetEntity="ListingsBusinessPlanFeature", mappedBy="businessPlan")
+     * @ORM\OneToMany(targetEntity="ListingsBusinessPlanFeature", mappedBy="businessPlan")
      * 
      * @var Collection
      */

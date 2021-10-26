@@ -4,9 +4,9 @@ use General\Service\GeneralService;
 use General\Service\Factory\GeneralServiceFactory;
 
 return [
+
     
    'service_manager' => [
-
        'factories' => [
            GeneralService::class=>GeneralServiceFactory::class,
        ],

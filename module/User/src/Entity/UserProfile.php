@@ -1,7 +1,11 @@
 <?php
-namespace Entity;
+namespace User\Entity;
 
+use Application\Entity\BusinessPlan;
 use Doctrine\ORM\Mapping as ORM;
+use General\Entity\FileUpload;
+use Laminas\Db\Sql\Ddl\Column\Datetime;
+use User\Entity\User;
 
 
 /**
@@ -21,19 +25,50 @@ class UserProfile
      *
      */
     private $id;
-    
-    
-    private $fullname; // equivalent to company name
-    
+
+
+    /**
+     * @ORM\ManyToOne (targetEntity="General\Entity\FileUpload")
+     * @var FileUpload
+     */
     private $profileImage;
-    
-//     private 
-    
+
+    /**
+     * @ORM\ManyToOne (targetEntity="Application\Entity\BusinessPlan")
+     * @var BusinessPlan
+     */
+    private $package;
+
+    /**
+     * @ORM\Column(name="is_package_active", type="boolean", nullable=true)
+     * @var boolean
+     */
+    private $isPackageActive;
+
+    /**
+     * @ORM\Column(name="package_expire_date", type="datetime", nullable=true)
+     * @var \DateTime
+     */
+    private $packageExpireDate;
+
+    /**
+     * @ORM\OneToOne (targetEntity="User\Entity\User")
+     * @var User
+     */
+    private $user;
+
+    /**
+     * @ORM\Column (name="created_on", type="datetime", nullable=false)
+     * @var Datetime
+     */
     private $createdOn;
-    
+
+    /**
+     * @ORM\Column (name="updated_on", type="datetime", nullable=true)
+     * @var Datetime
+     */
     private $updatedOn;
-    
-//     private $
+
     
     /**
      */

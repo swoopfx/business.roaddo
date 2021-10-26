@@ -24,10 +24,15 @@ class ListingsSearchService
      * This gets a result of all listing search from the database
      * @return array
      */
-    private function search(){
+    public function search(){
         $em = $this->entityManager;
         $result = [];
         return$result;
+    }
+
+
+    public function listingDetails(){
+
     }
 
 

@@ -13,6 +13,7 @@
  */
 namespace User\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -40,7 +41,7 @@ class Role
 
     /**
      *
-     * @var Array @ORM\ManyToMany(targetEntity="Role", cascade={"persist"})
+     * @var Collection @ORM\ManyToMany(targetEntity="Role", cascade={"persist"})
      *      @ORM\JoinTable(name="roles_parents",
      *      joinColumns={@ORM\JoinColumn(name="role_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="parent_id", referencedColumnName="id")}

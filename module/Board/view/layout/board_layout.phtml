@@ -43,12 +43,12 @@
 </head>
 <body>
 
-
+<?= $this->partial("board_layout_header")?>
 <?= $this->content ?>
-<?= $this->partial("application/partial/layout_footer") ?>
+
 <?= $this->inlineScript()
-    ->prependFile($this->basePath('js/bootstrap.min.js'))
-    ->prependFile($this->basePath('js/jquery-3.5.1.min.js')) ?>
+    ->prependFile($this->basePath('/assets/js/bootstrap.min.js'))
+    ->prependFile($this->basePath('/assets/js/jquery-3.5.1.min.js')) ?>
 </body>
 
 <script src="assets/js/jquery.min.js"></script>

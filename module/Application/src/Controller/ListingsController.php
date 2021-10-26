@@ -15,4 +15,17 @@ class ListingsController extends AbstractActionController
         $viewModel = new ViewModel();
         return $viewModel;
     }
+
+    public function listingDetailsAction(){
+        $viewwModel = new ViewModel();
+        return $viewwModel;
+    }
+
+    public function planAction(){
+        if($this->identity()){
+            $this->redirect()->toRoute("board/default", array("controller"=>"board", "action"=>"create-listing"));
+        }
+        $viewModel = new ViewModel();
+        return $viewModel;
+    }
 }

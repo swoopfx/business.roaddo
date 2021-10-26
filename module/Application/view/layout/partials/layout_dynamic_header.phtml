@@ -4,14 +4,17 @@
             <div class="d-flex justify-content-between">
                 <div class="left-content">
                     <ul class="global-list">
-                        <li><span class="icon"><img src="assets/images/logo.png" alt="Logo" class="img-fluid"></li>
+                        <li><a href="<?php echo $this->url("home") ?>" ><img src="assets/images/logo.png" alt="Logo" class="img-fluid"></a> <?= $this->defaultFlagRoute() ?> </li>
                     </ul>
                 </div><!-- /.left-content -->
                 <div class="right-content align-self-center">
                     <div class="topbar-user">
-                        <span> <?= $this->defaultFlagRoute() ?></span> | <span> <a href="<?= $this->url("login") ?> ">Login</a> | <a
-                                    href="<?= $this->url("user-register")?>>">Sign Up</a></span>
+                        <span> <a href="<?= $this->url("login") ?> "><i title="User Account" class="fa fa-user"></i></a> |
+                            <span>   </span>
+                            <span> <a href="<?= $this->url("login") ?> "><i title="Logout" class="fa fa-sign-out"></i></a></span>
+
                     </div><!-- /.topbar-user -->
+
                 </div><!-- /.right-content -->
             </div>
         </div><!-- /.container -->

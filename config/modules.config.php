@@ -33,5 +33,6 @@ return [
     'Application',
     "General",
     "User",
-    "Valuation"
+    "Valuation",
+    "Board",
 ];

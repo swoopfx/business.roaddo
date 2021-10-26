@@ -1,0 +1,40 @@
+<?php
+echo $this->headtitle("Subscription Plan");
+
+echo $this->partial("application/partial/layout_dynamic_header");
+
+?>
+
+
+<div class="lt-section">
+    <div class="section-content section-padding bg-color text-center">
+        <div class="container">
+            <div class="title-center">
+                <div class="section-title">
+                    <h1>Pricing</h1>
+                    <div class="paragraph">
+                        <p>Choose from one of Availiable Advertising Plans</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-content">
+                <div class="row">
+                    <?php foreach ($packages as $package): ?>
+                        <div class="col-md-4">
+                            <div class="feature">
+                                <div class="feature-icon">
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </div>
+                                <h2>$2.235.000</h2>
+                                <p>Compellingly brand 24/7 e-services whereas functional potentialities. Holisticly
+                                    restore parallel.</p>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
+                </div>
+            </div>
+        </div><!-- /.container -->
+    </div><!-- /.section-content -->
+</div><!-- /.lt-section -->

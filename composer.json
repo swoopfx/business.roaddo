@@ -39,8 +39,8 @@
 			"Application\\" : "module/Application/src/",
 			"General\\" : "module/General/src/",
 			"User\\" : "module/User/src/",
-			"Valuation\\" : "module/Valuation/src/"
-
+			"Valuation\\" : "module/Valuation/src/",
+			"Board\\" : "module/Board/src/"
 		}
 	},
 	"autoload-dev" : {
