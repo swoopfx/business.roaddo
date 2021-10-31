@@ -69,7 +69,10 @@ class RecognitionService
         $details = $this->getIpDetails($ip);
         
         $countryRoute = [];
-        array_push($countryRoute, $details->country_code);
+        if(isset($details->country_code)){
+            array_push($countryRoute, $details->country_code);
+        }
+        
         $this->setCountryRoute($countryRoute);
     }
 

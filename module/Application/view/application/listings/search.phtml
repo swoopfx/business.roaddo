@@ -1,4 +1,181 @@
 <?php
 echo $this->headtitle($title = "Listings");
-echo $this->partial("application/partial/layout_dynamic_header", ["extraTemplate"=>"application/partial/layout_searchbar"]);
+echo $this->partial("application/partial/layout_dynamic_header", ["extraTemplate" => "application/partial/layout_searchbar"]);
 ?>
+
+<div class="lt-page-content bg-color">
+    <div class="lt-section">
+        <div class="section-content lt-team section-padding">
+            <div class="container">
+                <div class="lt-filter-form list-view-tab">
+                    <div class="lt-filter-form-content">
+                        <div class="lt-filter d-flex justify-content-between">
+                            <div class="left-content align-self-center">
+<!--                                <h3>Found 4 Agents</h3>-->
+                            </div><!-- /.left-content -->
+                            <div class="right-content d-flex">
+                                <ul class="property-tabs global-list d-flex align-self-center">
+<!--                                    <li class="grid-view-tab active"><i class="fa fa-th-large" aria-hidden="true"></i>-->
+<!--                                    </li>-->
+<!--                                    <li class="list-view-tab"><i class="fa fa-list" aria-hidden="true"></i></li>-->
+                                </ul>
+                                <div class="short-by">
+                                    <select class="form-control">
+                                        <option>Short by</option>
+                                        <option>For Sale</option>
+                                        <option>For Rent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.lt-filter-content -->
+
+                    <div class="row">
+                        <div class="col-md-7 col-lg-8 lt-sticky">
+                            <div class="theiaStickySidebar">
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="lt-member">
+                                            <div class="member-thumb">
+                                                <img src="assets/images/team/9.jpg" alt="Member Image"
+                                                     class="img-fluid">
+                                                <span>Top Seller</span>
+                                            </div>
+                                            <div class="member-info">
+                                                <h2><a href="agent-details.html">Bradley Carroll</a></h2>
+                                                <span>Broker</span>
+                                                <div class="paragraph">
+                                                    <p>Assertively predominate an expanded array of scenarios rather
+                                                        than bleeding.</p>
+                                                </div>
+                                                <ul class="global-list">
+                                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- row -->
+                                <div class="lt-pagination">
+                                    <ul class="pagination ">
+                                        <li><a class="page-numbers" href="#"><i class="fa fa-chevron-left"></i></a></li>
+                                        <li><span class="page-numbers current">1</span></li>
+                                        <li><a class="page-numbers" href="#">2</a></li>
+                                        <li><a class="page-numbers" href="#">3</a></li>
+                                        <li><a class="page-numbers" href="#"><i class="fa fa-chevron-right"></i></a>
+                                        </li>
+                                    </ul>
+                                </div><!-- /.lt-pagination -->
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-lg-4 lt-sidebar lt-sticky">
+                            <div class="widget-area theiaStickySidebar">
+                                <div class="widget">
+                                    <h3 class="widget_title">Featured Company</h3>
+                                    <div class="featured-slider">
+                                        <div class="property">
+                                            <div class="thumb">
+                                                <img src="assets/images/property/featured-thumb.jpg" alt="Image"
+                                                     class="img-fluid">
+                                                <div class="overlay">
+                                                    <div class="property-status">
+                                                        <a href="#">Hot</a>
+                                                        <a href="#">Rent</a>
+                                                    </div>
+                                                    <div class="lt-price">
+                                                        <span>$570,600</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.property -->
+                                        <div class="property">
+                                            <div class="thumb">
+                                                <img src="assets/images/property/featured-thumb.jpg" alt="Image"
+                                                     class="img-fluid">
+                                                <div class="overlay">
+                                                    <div class="property-status">
+                                                        <a href="#">Hot</a>
+                                                        <a href="#">Rent</a>
+                                                    </div>
+                                                    <div class="lt-price">
+                                                        <span>$570,600</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.property -->
+                                    </div><!-- /.featured-slider -->
+                                </div><!-- /.widget -->
+
+                                <div class="widget widget_categories">
+                                    <h3 class="widget_title">Categories</h3>
+                                    <ul>
+                                        <li><a href="#">Announcement (3)</a></li>
+                                        <li><a href="#">Apartment (4)</a></li>
+                                        <li><a href="#">Design (3)</a></li>
+                                        <li><a href="#">Mortgages (6)</a></li>
+                                        <li><a href="#">Properties (6)</a></li>
+                                        <li><a href="#">Real Estate (5)</a></li>
+                                    </ul>
+                                </div><!-- /.widget -->
+
+                                <div class="widget widget_property">
+                                    <h3 class="widget_title">Recently Viewed</h3>
+                                    <ul>
+                                        <li class="media">
+                                            <div class="entry-thumbnail">
+                                                <a href="property-details.html"><img src="assets/images/property/1.png"
+                                                                                     alt="Image" class="img-fluid"></a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="property-details.html">Authoritatively harness</a>
+                                                <div class="map-location">
+                                                    <span class="map-icon"><i class="fa fa-map-marker"
+                                                                              aria-hidden="true"></i></span>
+                                                    <span>780 Lynnway, Lynn MA 1905</span>
+                                                </div>
+                                                <span class="price">$1,000,000</span>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <div class="entry-thumbnail">
+                                                <a href="property-details.html"><img src="assets/images/property/2.png"
+                                                                                     alt="Image" class="img-fluid"></a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="property-details.html">Revolutionary markets</a>
+                                                <div class="map-location">
+                                                    <span class="map-icon"><i class="fa fa-map-marker"
+                                                                              aria-hidden="true"></i></span>
+                                                    <span>780 Lynnway, Lynn MA 1905</span>
+                                                </div>
+                                                <span class="price">$1,000,000</span>
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <div class="entry-thumbnail">
+                                                <a href="property-details.html"><img src="assets/images/property/3.png"
+                                                                                     alt="Image" class="img-fluid"></a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="property-details.html">Rapidiously coordinate</a>
+                                                <div class="map-location">
+                                                    <span class="map-icon"><i class="fa fa-map-marker"
+                                                                              aria-hidden="true"></i></span>
+                                                    <span>780 Lynnway, Lynn MA 1905</span>
+                                                </div>
+                                                <span class="price">$1,000,000</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div><!-- /.widget -->
+                            </div><!-- /.widget-area -->
+                        </div>
+                    </div><!-- /.row -->
+                </div><!-- /.lt-filter-form -->
+            </div><!-- /.container -->
+        </div><!-- /.section-content -->
+    </div><!-- /.lt-section -->
+</div><!-- /.lt-page-content -->

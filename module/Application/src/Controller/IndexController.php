@@ -8,12 +8,25 @@ use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\JsonModel;
 use Laminas\View\Model\ViewModel;
 use Application\Service\RecognitionService;
+use Application\Entity\ListingsBusinessType;
+use Doctrine\ORM\EntityManager;
+use General\Service\GeneralService;
+use Doctrine\ORM\Query;
+use Application\Entity\ListingsSegment;
 
 class IndexController extends AbstractActionController
 {
     
+    /**
+     * 
+     * @var GeneralService
+     */
     private $genealService;
     
+    /**
+     * 
+     * @var EntityManager
+     */
     private $entityManager;
     
     /**
@@ -26,13 +39,42 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $this->recognitionService->implement();
-//        var_dump($this->recognitionService->getCountryRoute());
-//         $this->url()->fromRoute("home");
         return new ViewModel(
             array(
                 "countryRoutes"=>$this->recognitionService->getCountryRoute()
             )
         );
+    }
+    
+    public function getListingBusinessTypeAction(){
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $repo = $em->getRepository(ListingsBusinessType::class);
+        $data = $repo->createQueryBuilder('s')->select(["s"])->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        $jsonModel->setVariables([
+            "data"=>$data
+        ]);
+        return $jsonModel;
+    }
+    
+    public function getListingBusinessSegmentAction(){
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $repo = $em->getRepository(ListingsSegment::class);
+        $data = $repo->createQueryBuilder('s')->select(["s"])->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        $jsonModel->setVariables([
+            "data"=>$data
+        ]);
+        return $jsonModel;
+    }
+    
+    public function getBaseListingCategoryAction(){
+        
+    }
+    
+    public function getChildListingCategoryAction(){
+        $jsonModel = new JsonModel();
+        return $jsonModel;
     }
 
 

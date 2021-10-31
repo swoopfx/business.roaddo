@@ -1,110 +1,140 @@
 <header class="tl-header db-header">
-    <div class="side-menu-content">
-        <span class="tl-toggler"><i class="fa fa-bars" aria-hidden="true"></i></span>
-        <div class="side-menu">
-            <ul class="global-list">
-                <li><span class="heading nb">Main</span></li>
-                <li class="active"><a href="dashboard.html"><span><i class="fa fa-tachometer" aria-hidden="true"></i></span> Dashboard</a></li>
-                <li><a href="messages.html"><span><i class="fa fa-comment-o" aria-hidden="true"></i></span> Message</a></li>
-                <li><span class="heading">Listing</span></li>
-                <li><a href="my-properties.html"><span><i class="fa fa-home" aria-hidden="true"></i></span> My Properties</a></li>
-                <li><a href="my-favorites.html"><span><i class="fa fa-heart-o" aria-hidden="true"></i></span> My Favorities</a></li>
-                <li><a href="my-reviews.html"><span><i class="fa fa-star-o" aria-hidden="true"></i></span> Reviews</a></li>
-                <li><span class="heading">Agents</span></li>
-                <li><a href="all-agents.html"><span><i class="fa fa-user-o" aria-hidden="true"></i></span> All Agents</a></li>
-                <li><a href="add-agent.html"><span><i class="fa fa-user-plus" aria-hidden="true"></i></span> Add New Agents</a></li>
-                <li><span class="heading">Account</span></li>
-                <li><a href="edit-profile.html"><span><i class="fa fa-user" aria-hidden="true"></i></span> My Profile</a></li>
-                <li><a href="packages.html"><span><i class="fa fa-briefcase" aria-hidden="true"></i></span> My Packages</a></li>
-                <li><a href="social-accounts.html"><span><i class="fa fa-briefcase" aria-hidden="true"></i></span> Social Accounts</a></li>
-                <li><a href="dashboard.html"><span><i class="fa fa-sign-out" aria-hidden="true"></i></span> Logout</a></li>
-            </ul>
-        </div><!-- sidebar -->
-    </div>
-    <div class="tl-menu menu-absolute menu-sticky">
-        <nav class="navbar navbar-expand-lg p-0">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo-white.png" alt="Logo" class="img-fluid logo-lg">
-                    <img src="assets/images/logo-sm.png" alt="Logo" class="img-fluid logo-sm">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"><i class="fa fa-align-justify"></i></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-<!--                    <ul class="navbar-nav">-->
-<!--                        <li class="tl-dropdown">-->
-<!--                            <a href="#">Home</a>-->
-<!--                            <ul class="tl-dropdown-menu">-->
-<!--                                <li><a href="index.html">Home V-1</a></li>-->
-<!--                                <li><a href="index1.html">Home V-2</a></li>-->
-<!--                                <li><a href="dashboard.html">Home Dashboard</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li><a href="about.html">About</a></li>-->
-<!--                        <li><a href="property.html">Service</a></li>-->
-<!--                        <li class="tl-dropdown">-->
-<!--                            <a href="#">Pages</a>-->
-<!--                            <ul class="tl-dropdown-menu">-->
-<!--                                <li><a href="team.html">Agents</a></li>-->
-<!--                                <li><a href="blog-list.html">Blog List View</a></li>-->
-<!--                                <li><a href="blog-list.html">Blog List View</a></li>-->
-<!--                                <li><a href="blog-details.html">Blog Details</a></li>-->
-<!--                                <li><a href="agent-details.html">Agent Details</a></li>-->
-<!--                                <li><a href="property-submit.html">Property Submit</a></li>-->
-<!--                                <li><a href="property-details.html">Property Details</a></li>-->
-<!--                                <li><a href="login.html">Login</a></li>-->
-<!--                                <li><a href="sign-up.html">Sign Up</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                        <li><a href="blog.html">Blog</a></li>-->
-<!--                        <li><a href="contact.html">Contact</a></li>-->
-<!--                    </ul>-->
-                </div>
-                <div class="right-content">
-<!--                    <form class="tl-search-form align-self-center" role="search" action="#">-->
-<!--                        <input type="search" class="form-control" placeholder="Search here...">-->
-<!--                        <button type="submit" id="search-submit" class="btn"><i class="fa fa-search"></i></button>-->
-<!--                    </form>-->
+	<div class="side-menu-content">
+		<span class="tl-toggler"><i class="fa fa-bars" aria-hidden="true"></i></span>
+		<div class="side-menu">
+			<ul class="global-list">
+				<li><span class="heading nb">Main</span></li>
+				<li><a
+					href="<?php  echo $this->url("board")?>"><span><i
+							class="fa fa-tachometer" aria-hidden="true"></i></span> My
+						Dashboard</a></li>
 
-<!--                    <div class="tl-search">-->
-<!--                        <div class="search-icon">-->
-<!--                            <i class="fa fa-search" aria-hidden="true"></i>-->
-<!--                        </div>-->
-<!--                        <div class="search-form text-center open-search">-->
-<!--                            <div class="close-search">-->
-<!--                                <span><i class="fa fa-times-circle" aria-hidden="true"></i></span>-->
-<!--                            </div>-->
-<!--                            <form action="#" id="search" method="get">-->
-<!--                                <input id="inputhead" name="search" type="text" placeholder="Enter keyword...">-->
-<!--                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>-->
-<!--                            </form><!-- /form -->-->
-<!--                        </div><!-- /s form -->-->
-<!--                    </div><!-- /.tl-search -->-->
+				<li><a
+					href="<?php  echo $this->url("board/default",["controller"=>"board", "action"=>"create-listing"])?>"><span><i
+							class="fa fa-tachometer" aria-hidden="true"></i></span> List A
+						Business</a></li>
+				<li><a href="<?php  echo "" ?>"><span><i class="fa fa-comment-o"
+							aria-hidden="true"></i></span> Value My Business</a></li>
+				<li><a
+					href="<?php  echo $this->url("board/default", ["controller"=>"board", "action"=>"create-company"])?>"><span><i
+							class="fa fa-comment-o" aria-hidden="true"></i></span> Create a
+						Company</a></li>
+				<li><span class="heading">Listing</span></li>
+				<li><a href="my-properties.html"><span><i class="fa fa-home"
+							aria-hidden="true"></i></span> Feature My Business</a></li>
+				<!--                 <li><a href="my-favorites.html"><span><i class="fa fa-heart-o" aria-hidden="true"></i></span> My Favorities</a></li> -->
+				<!--                 <li><a href="my-reviews.html"><span><i class="fa fa-star-o" aria-hidden="true"></i></span> Reviews</a></li> -->
+				<li><span class="heading">Account</span></li>
+				<!--                 <li><a href="edit-profile.html"><span><i class="fa fa-user" aria-hidden="true"></i></span> My Profile</a></li> -->
+				<li><a href="packages.html"><span><i class="fa fa-briefcase"
+							aria-hidden="true"></i></span> My Profile</a></li>
+				<li><a href="<?php  echo ""?>"><span><i class="fa fa-briefcase"
+							aria-hidden="true"></i></span> Settings</a></li>
+				<li><a href="<?php  //echo $this->url("logout")?>"><span><i
+							class="fa fa-sign-out" aria-hidden="true"></i></span> Logout</a></li>
+			</ul>
+		</div>
+		<!-- sidebar -->
+	</div>
+	<div class="tl-menu menu-absolute menu-sticky">
+		<nav class="navbar navbar-expand-lg p-0">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="<?php  echo $this->url("home")?>"> <img
+					src="/assets/images/logo-white.png" alt="Logo"
+					class="img-fluid logo-lg"> <img src="/assets/images/logo-sm.png"
+					alt="Logo" class="img-fluid logo-sm">
+				</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarNav" aria-controls="navbarNav"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="fa fa-align-justify"></i></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<!--                    <ul class="navbar-nav">-->
+					<!--                        <li class="tl-dropdown">-->
+					<!--                            <a href="#">Home</a>-->
+					<!--                            <ul class="tl-dropdown-menu">-->
+					<!--                                <li><a href="index.html">Home V-1</a></li>-->
+					<!--                                <li><a href="index1.html">Home V-2</a></li>-->
+					<!--                                <li><a href="dashboard.html">Home Dashboard</a></li>-->
+					<!--                            </ul>-->
+					<!--                        </li>-->
+					<!--                        <li><a href="about.html">About</a></li>-->
+					<!--                        <li><a href="property.html">Service</a></li>-->
+					<!--                        <li class="tl-dropdown">-->
+					<!--                            <a href="#">Pages</a>-->
+					<!--                            <ul class="tl-dropdown-menu">-->
+					<!--                                <li><a href="team.html">Agents</a></li>-->
+					<!--                                <li><a href="blog-list.html">Blog List View</a></li>-->
+					<!--                                <li><a href="blog-list.html">Blog List View</a></li>-->
+					<!--                                <li><a href="blog-details.html">Blog Details</a></li>-->
+					<!--                                <li><a href="agent-details.html">Agent Details</a></li>-->
+					<!--                                <li><a href="property-submit.html">Property Submit</a></li>-->
+					<!--                                <li><a href="property-details.html">Property Details</a></li>-->
+					<!--                                <li><a href="login.html">Login</a></li>-->
+					<!--                                <li><a href="sign-up.html">Sign Up</a></li>-->
+					<!--                            </ul>-->
+					<!--                        </li>-->
+					<!--                        <li><a href="blog.html">Blog</a></li>-->
+					<!--                        <li><a href="contact.html">Contact</a></li>-->
+					<!--                    </ul>-->
+				</div>
+				<div class="right-content">
+					<!--                    <form class="tl-search-form align-self-center" role="search" action="#">-->
+					<!--                        <input type="search" class="form-control" placeholder="Search here...">-->
+					<!--                        <button type="submit" id="search-submit" class="btn"><i class="fa fa-search"></i></button>-->
+					<!--                    </form>-->
 
-                    <div class="tl-user-option align-self-center">
-                        <ul class="global-list d-flex align-self-center">
-                            <li><a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i> <span>3</span></a></li>
-                            <li><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
-                        </ul>
-                        <div class="tl-user align-self-center">
-                            <div class="author dropdown">
-                                <a href="#" class="dropdown-toggle" type="button" id="tl-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="assets/images/others/author2.png" alt="Image"></a>
+					<!--                    <div class="tl-search">-->
+					<!--                        <div class="search-icon">-->
+					<!--                            <i class="fa fa-search" aria-hidden="true"></i>-->
+					<!--                        </div>-->
+					<!--                        <div class="search-form text-center open-search">-->
+					<!--                            <div class="close-search">-->
+					<!--                                <span><i class="fa fa-times-circle" aria-hidden="true"></i></span>-->
+					<!--                            </div>-->
+					<!--                            <form action="#" id="search" method="get">-->
+					<!--                                <input id="inputhead" name="search" type="text" placeholder="Enter keyword...">-->
+					<!--                                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>-->
+					<!--                            </form><!-- /form -->
+					-->
+					<!--                        </div><!-- /s form -->
+					-->
+					<!--                    </div><!-- /.tl-search -->
+					-->
 
-                                <div class="dropdown-menu" aria-labelledby="tl-dropdown">
-                                    <a class="dropdown-item" href="edit-profile.html"> Profile</a>
-                                    <a class="dropdown-item" href="#">My Wallet</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
-                                    <a class="dropdown-item" href="#">Lock screen</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item text-danger" href="login.html"> Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.tl-user-option -->
-                </div>
-            </div><!-- /.container -->
-        </nav><!-- /.navbar -->
-    </div><!-- /.tl-menu -->
-</header><!-- /.tl-header -->
+					<div class="tl-user-option align-self-center">
+						<ul class="global-list d-flex align-self-center">
+							<li><a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a></li>
+							<li><a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+									<span>3</span></a></li>
+							<li><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+						</ul>
+						<div class="tl-user align-self-center">
+							<div class="author dropdown">
+								<a href="#" class="dropdown-toggle" type="button"
+									id="tl-dropdown" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"><img class="img-fluid"
+									src="/assets/images/others/author2.png" alt="Image"></a>
+
+								<div class="dropdown-menu" aria-labelledby="tl-dropdown">
+									<a class="dropdown-item" href="edit-profile.html"> Profile</a>
+									<a class="dropdown-item" href="#">My Wallet</a> <a
+										class="dropdown-item" href="#">Settings</a> <a
+										class="dropdown-item" href="#">Lock screen</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item text-danger" href="login.html"> Logout</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.tl-user-option -->
+				</div>
+			</div>
+			<!-- /.container -->
+		</nav>
+		<!-- /.navbar -->
+	</div>
+	<!-- /.tl-menu -->
+</header>
+<!-- /.tl-header -->

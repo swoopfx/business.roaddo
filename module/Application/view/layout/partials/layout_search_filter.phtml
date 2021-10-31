@@ -1,0 +1,146 @@
+<?php
+?>
+
+<div id="searchfilter" class="lt-page-content bg-color">
+    <div class="lt-section">
+        <div class="section-content section-padding">
+         
+        </div><!-- /.section-content -->
+
+        <div v-if="isShowCog" class="search-area bg-color">
+            <div class="container">
+                <div class="search-area-inner">
+                    <h2>Search Your Property</h2>
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label>Property Type</label>
+                                    <select class="form-control">
+                                        <option>Select Type</option>
+                                        <option>All areas</option>
+                                        <option>Bayonne</option>
+                                        <option>Queens</option>
+                                        <option>Manhattan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label>Property Status</label>
+                                    <select class="form-control">
+                                        <option>Status Type</option>
+                                        <option>For Sale</option>
+                                        <option>For Rent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label>Your Location</label>
+                                    <input type="text" class="form-control" placeholder="Your Location">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label>Bedrooms</label>
+                                    <select class="form-control">
+                                        <option>Bedrooms</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="form-group">
+                                    <label>Bathrooms</label>
+                                    <select class="form-control">
+                                        <option>Bathrooms</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="slider-range">
+                                    <label>Price Range</label>
+                                    <div class="price_slider_amount">
+                                        <input type="text" id="amount">
+                                    </div>
+                                    <div id="price_slider"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="slider-range">
+                                    <label>Area</label>
+                                    <div class="area_slider_amount">
+                                        <input type="text" id="area_amount">
+                                    </div>
+                                    <div id="area_slider"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 align-self-end">
+                                <div class="button">
+                                    <input type="submit" value="Search" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </form>
+                    <button type="button" data-toggle="collapse" data-target="#check-box-collapse" aria-expanded="false" aria-controls="check-box-collapse" class="collapsed collapsed-btn">More Search Option <span class="ml-2"><i class="fa fa-angle-down"></i></span></button>
+                    <div class="collapse" id="check-box-collapse">
+                        <form action="#" class="check-box-form">
+                            <div class="check-box">
+                                <input type="radio" name="features" id="features">
+                                <label for="features">Features</label>
+                            </div>
+                            <div class="check-box">
+                                <input type="radio" name="balcony" id="balcony">
+                                <label for="balcony">Balcony</label>
+                            </div>
+                            <div class="check-box">
+                                <input type="radio" name="gas-heat" id="gas-heat">
+                                <label for="gas-heat">Gas Heat</label>
+                            </div>
+                            <div class="check-box">
+                                <input type="radio" name="washer-dryer" id="washer-dryer">
+                                <label for="washer-dryer">Washer, Dryer</label>
+                            </div>
+                            <div class="check-box">
+                                <input type="radio" name="tv-cable" id="tv-cable">
+                                <label for="tv-cable">TV Cable</label>
+                            </div>
+                            <div class="check-box">
+                                <input type="radio" name="swimming-pool" id="swimming-pool">
+                                <label for="swimming-pool">Swimming Pool</label>
+                            </div>
+                            <div class="check-box">
+                                <input type="radio" name="home-theater" id="home-theater">
+                                <label for="home-theater">Home Theater</label>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.search-area-inner -->
+            </div><!-- /.container -->
+        </div><!-- /.search-area -->
+
+
+
+
+    </div><!-- /.lt-section -->
+</div><!-- /.lt-page-content -->
+
+<script>
+
+    let searchFilter = new Vue({
+        el:"#searchfilter",
+        data() {
+            return {
+                isShowCog: false
+            }
+        },
+    });
+</script>

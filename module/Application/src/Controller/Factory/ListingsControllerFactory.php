@@ -3,6 +3,7 @@
 namespace Application\Controller\Factory;
 
 use Application\Controller\ListingsController;
+use Application\Service\ListingsSearchService;
 use General\Service\GeneralService;
 use Interop\Container\ContainerInterface;
 use Interop\Container\Exception\ContainerException;
@@ -19,7 +20,10 @@ class ListingsControllerFactory implements \Laminas\ServiceManager\Factory\Facto
     {
         $ctr = new ListingsController();
         $generalService = $container->get(GeneralService::class);
-
+        $listingsSearchService = $container->get(ListingsSearchService::class);
+        $ctr->setEntityManager($generalService->getEntityManager())
+            ->setGeneralService($generalService)
+            ->setListingSearchService($listingsSearchService);
         return $ctr;
     }
 }

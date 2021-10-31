@@ -3,14 +3,13 @@
 namespace Board;
 
 
-use Board\Controller\BoardController;
 use Board\Controller\Factory\BoardControllerFactory;
 use Laminas\Router\Http\Literal;
 
 return [
     "controllers" => [
         "factories" => [
-            BoardController::class => BoardControllerFactory::class
+            "Board\Controller\Board" => BoardControllerFactory::class
         ],
     ],
 
@@ -19,9 +18,10 @@ return [
             'board' => [
                 'type' => Literal::class,
                 'options' => [
-                    'route' => '/board',
+                    'route' => '/dashboard',
                     'defaults' => [
-                        'controller' => BoardController::class,
+                        '__NAMESPACE__' => 'Board\Controller',
+                        'controller' => 'Board',
                         'action' => 'board'
                     ]
                 ],
@@ -80,6 +80,9 @@ return [
         'template_map' => [
              'layout/board_layout' => __DIR__ . '/../view/layout/board_layout.phtml',
             "board_layout_header"=>__DIR__ . '/../view/layout/partial/board_layout_header.phtml',
+
+            //create Company 
+            "board_create_company_form"=>__DIR__ . '/../view/partials/board_create_company_form.phtml',
         ],
         'template_path_stack' => [
             __DIR__ . '/../view'

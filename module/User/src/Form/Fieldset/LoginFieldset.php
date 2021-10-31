@@ -38,10 +38,10 @@ class LoginFieldset extends Fieldset implements InputFilterProviderInterface
 //         $hydrator = new DoctrineObject($this->entityManager);
         parent::__construct($name = null, $options = null);
         $this->add(array(
-            'name' => 'username',
+            'name' => 'email',
             'type' => 'text',
             'options' => array(
-                'label' => 'Phone Number or Email',
+                'label' => ' Email',
                 'label_attributes' => array(
                     'class' => 'control-label col-md-3 col-sm-3 col-xs-12'
                 )
@@ -50,7 +50,7 @@ class LoginFieldset extends Fieldset implements InputFilterProviderInterface
                 'class' => 'form-control col-md-9 col-xs-12',
                 'id' => 'username',
                 'required' => 'required',
-                'title' => 'Provide user phone number or email'
+                'title' => 'Provide  email'
             )
         ));
        
@@ -78,7 +78,7 @@ class LoginFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return [
-            'username' => array(
+            'email' => array(
                 'required' => true,
                 'allow_empty' => false,
                 'break_chain_on_failure' => true,

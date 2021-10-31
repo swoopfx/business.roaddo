@@ -1,0 +1,89 @@
+<?php
+echo $this->headtitle("Create Company");
+?>
+<div class="price-boxes">
+	<!-- 						<ul class="global-list"> -->
+	<!-- 							<li>$125.33k <small>Sales</small></li> -->
+	<!-- 							<li>5300+ <small>Products</small></li> -->
+	<!-- 							<li>1,058k <small>Visits</small></li> -->
+	<!-- 							<li>$66.55k <small>Shopping</small></li> -->
+	<!-- 						</ul> -->
+</div>
+<!-- price-boxes -->
+
+<div class="row">
+
+
+	<div class="col-lg-8">
+	<?php echo $this->partial("board_create_company_form")?>
+	</div>
+	<div id="companyList" class="col-lg-4">
+
+		<div class="bg-white sub-section">
+			<div class="ds-header d-flex justify-content-between">
+				<div class="title">
+					<h1>Created Companies</h1>
+				</div>
+				<div class="more-icon align-self-center">
+					<a href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+				</div>
+			</div>
+			<!-- /.ds-header -->
+
+			<div class="recent-listing">
+				<ul class="global-list" v-if="createdCompany.length">
+					<li v-for="company in createdCompany">
+						<div class="d-flex">
+							<div class="thumb">
+								<img src="assets/images/db/list1.png" alt="Image"
+									class="img-fluid">
+							</div>
+							<div class="info align-self-center">
+								<h2>
+									<a href="#">{{company.companyTitle}}</a>
+								</h2>
+
+							</div>
+						</div>
+						<div class="details align-self-center">
+							<a href="#">Details <i class="fa fa-angle-right"
+								aria-hidden="true"></i></a>
+						</div>
+					</li>
+
+
+
+
+				</ul>
+			</div>
+			<!-- /.recent-listing -->
+		</div>
+
+		<!-- /.widget -->
+	</div>
+
+	<script>
+		let companyList = new Vue({
+			el:"#companyList",
+			data() {
+				return {
+					createdCompany: [],
+				}
+			},
+			mounted () {
+				this.getCreatedCompany();
+			},
+			methods: {
+				getCreatedCompany(){
+					axios.get("/dashboard/board/getcreatedcompany").then(res=>{
+						if(res.status == 200){
+							this.createdCompany = res.data.data;
+						}
+					}).catch();
+				},
+			},
+		});
+	</script>
+</div>
+<!-- /.row -->
+

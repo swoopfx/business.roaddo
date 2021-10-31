@@ -30,7 +30,7 @@ class IndexControllerFactory implements FactoryInterface
        $generalService = $container->get("General\Service\GeneralService");
 
        $recogService = $container->get(RecognitionService::class);
-       $ctr->setRecognitionService($recogService);
+       $ctr->setRecognitionService($recogService)->setEntityManager($generalService->getEntityManager());
        return $ctr;
     }
 }

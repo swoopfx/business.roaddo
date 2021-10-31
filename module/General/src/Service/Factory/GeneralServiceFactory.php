@@ -24,11 +24,16 @@ class GeneralServiceFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $xser = new GeneralService();
+//         $config = 
         $em = $container->get('doctrine.entitymanager.orm_default');
+        // $mailService = (getenv('APPLICATION_ENV') == "development" ? $container->get("acmailer.mailservice.default") : $container->get("acmailer.mailservice.live"));
+
         $auth = $container->get('Laminas\Authentication\AuthenticationService');
+
         $this->auth = $auth;
         $user = $this->getUserEntity();
         $xser->setEntityManager($em)
+            ->setMailService($mailService)
             ->setAuth($auth)
             ->setUser($user);
         return $xser;

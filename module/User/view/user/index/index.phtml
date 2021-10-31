@@ -5,12 +5,12 @@ $this->headtitle("Login");
 
 $form = $this->form;
 $form->setAttribute('action', '' /*$this->url('login') */);
-$form->setAttribute('class', 'form-signin');
+$form->setAttribute('class', "lt-form");
 $form->prepare();
 $fieldset = $form->get("userBasicField");
-$fieldset->get('username')->setAttributes(array(
+$fieldset->get('email')->setAttributes(array(
     'class' => 'form-control',
-    'placeholder' => $this->translate('Phone Number or Email'),
+    'placeholder' => $this->translate(' Email'),
     'aria-describedby' => 'basic-addon1'
 ));
 
@@ -45,16 +45,16 @@ $form->get('submit')->setAttributes(array(
         <div class="section-content lt-account section-padding">
             <div class="account-content bg-white">
                 <h2>Login Into Account</h2>
-                <form action="#" class="lt-form">
+               <?php echo $this->form()->openTag($form);?>
 
                     <div class="form-group">
 
-                        <?php echo $this->formElement()->render($fieldset->get('username')); ?>
+                        <?php echo $this->formElement()->render($fieldset->get('email')); ?>
                         <div class="input-addon">
                             <i class="fa fa-envelope-o" aria-hidden="true"></i>
                         </div>
                         <div style="font-size: 9px; color: red;">
-                            <?php echo $this->formElementErrors($fieldset->get('username')); ?></div>
+                            <?php echo $this->formElementErrors($fieldset->get('email')); ?></div>
                     </div>
 
                     <div class="form-group">
@@ -83,7 +83,7 @@ $form->get('submit')->setAttributes(array(
                         <span>Don’t have an account? <a href="<?php echo $this->url("user-register") ?>" class="color">Sign up</a></span>
                         <span><a href="#">Forgot Password? </a></span>
                     </div>
-                </form>
+                <?php $this->form()->closeTag()?>
                 <?php
 
                 if ($this->messages) {

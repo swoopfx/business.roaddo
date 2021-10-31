@@ -27,6 +27,31 @@ class BusinessPlan
     private $id;
 
     /**
+     * @param string $planUid
+     * @return BusinessPlan
+     */
+    public function setPlanUid(string $planUid): BusinessPlan
+    {
+        $this->planUid = $planUid;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlanUid(): string
+    {
+        return $this->planUid;
+    }
+
+
+    /**
+     * @ORM\Column(name="plan_uid", type="string", nullable=false)
+     * @var string
+     */
+    private $planUid;
+
+    /**
      * @ORM\Column(name="plan_name", type="string", nullable=false)
      * 
      * @var string
@@ -53,6 +78,20 @@ class BusinessPlan
      * @var Collection
      */
     private $features;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="created_on", type="datetime", nullable=true)
+     */
+    private $createdOn;
+
+
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(name="updated_on", type="datetime", nullable=true)
+     */
+    private $updatedOn;
 
     /**
      */
@@ -144,6 +183,42 @@ class BusinessPlan
     {
         $this->price = $price;
         return $this;
+    }
+
+    /**
+     * @param \DateTime $createdOn
+     * @return BusinessPlan
+     */
+    public function setCreatedOn(\DateTime $createdOn): BusinessPlan
+    {
+        $this->createdOn = $createdOn;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedOn(): \DateTime
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * @param \DateTime $updatedOn
+     * @return BusinessPlan
+     */
+    public function setUpdatedOn(\DateTime $updatedOn): BusinessPlan
+    {
+        $this->updatedOn = $updatedOn;
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedOn(): \DateTime
+    {
+        return $this->updatedOn;
     }
 
     /**

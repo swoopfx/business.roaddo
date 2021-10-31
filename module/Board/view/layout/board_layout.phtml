@@ -6,60 +6,76 @@
 <?= $this->doctype() ?>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
 
-    <?= $this->headTitle('Roaddo Business Directory')->setSeparator(' - ')->setAutoEscape(false) ?>
+    <?= $this->headTitle('Roaddo Business Directory Admin')->setSeparator(' - ')->setAutoEscape(false) ?>
 
-    <?= $this->headMeta()
-        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-    ?>
+    <?=$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0')->appendHttpEquiv('X-UA-Compatible', 'IE=edge')?>
 
     <!-- Le styles -->
-    <?= $this->headLink([
-        'rel' => 'shortcut icon',
-        'type' => 'image/vnd.microsoft.icon',
-        'href' => $this->basePath() . '/img/favicon.ico'
-    ])
-        ->prependStylesheet($this->basePath('assets/css/app.css'))
-        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
-    ?>
+    <?=$this->headLink(['rel' => 'shortcut icon','type' => 'image/vnd.microsoft.icon','href' => $this->basePath() . '/img/favicon.ico'])
+	 ->prependStylesheet("https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css")
+	->prependStylesheet($this->basePath('assets/css/app.css'))
+	->prependStylesheet($this->basePath('css/bootstrap.min.css'))?>
 
-    <link href="https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900&display=swap"
-          rel="stylesheet">
+    <link
+	href="https://fonts.googleapis.com/css?family=Oxanium:200,300,400,500,600,700,800&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,200,300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
 
 
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/ico/apple-touch-icon-precomposed.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/ico/apple-touch-icon-57-precomposed.png">
-    <!-- Scripts -->
-    <?= $this->headScript()->prependFile("https://unpkg.com/sweetalert/dist/sweetalert.min.js")
-//        ->prependFile("https://cdn.jsdelivr.net/npm/vue-toast-notification")
-        ->prependFile($this->basePath('assets/js/axios.min.js'))
-        ->prependFile($this->basePath('assets/js/vue.js')) ?>
+<link rel="apple-touch-icon" sizes="144x144"
+	href="assets/images/ico/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="114x114"
+	href="assets/images/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon" sizes="72x72"
+	href="assets/images/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon" sizes="57x57"
+	href="assets/images/ico/apple-touch-icon-57-precomposed.png">
+<!-- Scripts -->
+    <?php
+    
+echo $this->headScript()
+        ->prependFile("https://unpkg.com/sweetalert/dist/sweetalert.min.js")
+		->prependFile("https://cdn.jsdelivr.net/npm/vue-toast-notification@0.6.2/dist/index.min.js")
+        ->prependFile($this->basePath('/assets/js/axios.min.js'))
+        ->prependFile($this->basePath('/assets/js/vue.js'))?>
 </head>
 <body>
 
 <?= $this->partial("board_layout_header")?>
-<?= $this->content ?>
 
-<?= $this->inlineScript()
-    ->prependFile($this->basePath('/assets/js/bootstrap.min.js'))
-    ->prependFile($this->basePath('/assets/js/jquery-3.5.1.min.js')) ?>
+ <div class="tl-section">
+		<div class="tl-dashboard bg-color">
+			<div class="container-fluid p-0">
+				<div class="main">
+					<?= $this->content ?>
+					<div class="copy-right text-center">
+						<span><a href="#">Roaddo</a> &copy;  Business Directory</span>
+					</div>
+				</div>
+				<!-- main -->
+			</div>
+		</div>
+		<!-- dashboard -->
+	</div>
+	<!-- tl-dashboard -->  
+
+
+<?=$this->inlineScript()->prependFile($this->basePath('/assets/js/bootstrap.min.js'))->prependFile($this->basePath('/assets/js/jquery-3.5.1.min.js'))?>
 </body>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/popper.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/magnific-popup.min.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/counterup.min.js"></script>
-<script src="assets/js/waypoints.min.js"></script>
-<script src="assets/js/jquery-ui-min.js"></script>
-<script src="assets/js/jquery.nice-select.min.js"></script>
-<script src="assets/js/theia-sticky-sidebar.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/magnific-popup.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/counterup.min.js"></script>
+<script src="/assets/js/waypoints.min.js"></script>
+<script src="/assets/js/jquery-ui-min.js"></script>
+<script src="/assets/js/jquery.nice-select.min.js"></script>
+<script src="/assets/js/theia-sticky-sidebar.min.js"></script>
+<script src="/assets/js/main.js"></script>
 </html>

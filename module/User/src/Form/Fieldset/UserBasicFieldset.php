@@ -47,10 +47,10 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
     private function addFields()
     {
         $this->add(array(
-            'name' => 'username',
+            'name' => 'firstname',
             'type' => 'text',
             'options' => array(
-                'label' => 'Staff Username',
+                'label' => 'Fistname',
                 'label_attributes' => array(
                     'class' => 'control-label col-md-3 col-sm-3 col-xs-12'
                 )
@@ -59,7 +59,24 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                 'class' => 'form-control col-md-9 col-xs-12',
                 'id' => 'username',
                 'required' => 'required',
-                'title' => 'Provide Staffs phone number'
+                'title' => 'Provide First name'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'lastname',
+            'type' => 'text',
+            'options' => array(
+                'label' => 'Last Name',
+                'label_attributes' => array(
+                    'class' => 'control-label col-md-3 col-sm-3 col-xs-12'
+                )
+            ),
+            'attributes' => array(
+                'class' => 'form-control col-md-9 col-xs-12',
+                'id' => 'lastname',
+                'required' => 'required',
+                'title' => 'Last Name'
             )
         ));
         $this->add(array(
@@ -72,10 +89,10 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
                 )
             ),
             'attributes' => array(
-                'id' => 'staff_email',
+                'id' => 'email',
                 'required' => 'required',
                 'class' => 'form-control col-md-9 col-xs-12',
-                'title' => 'Provide Email accessible by the staff',
+                'title' => 'Provide Email accessible ',
                 'placeholder' => 'az@xyz.com'
             )
         ));
@@ -126,6 +143,21 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
             ]
         ]);
 
+        $this->add([
+            "name" => "terms",
+            "type" => Checkbox::class,
+            "options" => [
+                "label" => "I have read and accept the Terms & Conditions and Privacy Policy",
+                'label_attributes' => array(
+                    'class' => 'control-label col-md-3 col-sm-3 col-xs-12'
+                )
+            ],
+            'attributes' => [
+                'class' => 'form-control col-md-9 col-xs-12'
+
+            ]
+        ]);
+
 //        $this->add(array(
 //            'name' => 'usernameOrEmail',
 //            'type' => 'text',
@@ -153,6 +185,59 @@ class UserBasicFieldset extends Fieldset implements InputFilterProviderInterface
     public function getInputFilterSpecification()
     {
         return array(
+            "firstname" => array(
+                "required" => true,
+                "allow_empty" => false,
+                "filters" => array(
+                    array(
+                        'name' => 'StripTags'
+                    ),
+                    array(
+                        'name' => 'StringTrim'
+                    )
+                ),
+                "validators" => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 2,
+                            'max' => 50,
+                            "messages" => array(
+                                StringLength::TOO_SHORT => "The firstname must be more than 2 characters",
+                                StringLength::TOO_LONG => "This firstname is too long to memorize"
+                            )
+                        )
+                    )
+                )
+            ),
+
+            "lastname" => array(
+                "required" => true,
+                "allow_empty" => false,
+                "filters" => array(
+                    array(
+                        'name' => 'StripTags'
+                    ),
+                    array(
+                        'name' => 'StringTrim'
+                    )
+                ),
+                "validators" => array(
+                    array(
+                        'name' => 'StringLength',
+                        'options' => array(
+                            'encoding' => 'UTF-8',
+                            'min' => 2,
+                            'max' => 50,
+                            "messages" => array(
+                                StringLength::TOO_SHORT => "The lastname must be more than 2 characters",
+                                StringLength::TOO_LONG => "This last is too long"
+                            )
+                        )
+                    )
+                )
+            ),
             "password" => array(
                 "required" => true,
                 "allow_empty" => false,

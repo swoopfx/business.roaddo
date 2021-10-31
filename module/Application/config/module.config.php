@@ -14,6 +14,10 @@ use Laminas\ServiceManager\Factory\InvokableFactory;
 use Application\Service\RecognitionService;
 use Application\Service\Factory\RecognitionServiceFactory;
 use Application\Controller\Factory\IndexControllerFactory;
+use Application\Service\TransactionService;
+use Application\Service\Factory\TransactionServiceFactory;
+use Application\View\Helper\DashboardListingConditionHelper;
+use Application\View\Helper\Factory\DashboardListingConditionHelperFactory;
 return [
     'router' => [
         'routes' => [
@@ -22,7 +26,8 @@ return [
                 'options' => [
                     'route' => '/',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Index',
                         'action' => 'index'
                     ]
                 ]
@@ -32,7 +37,8 @@ return [
                 'options' => [
                     'route' => '/application[/:action]',
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Index',
                         'action' => 'index'
                     ]
                 ]
@@ -42,8 +48,9 @@ return [
                 'options' => [
                     'route' => '/listings',
                     'defaults' => [
-                        'controller' => ListingsController::class,
-                        'action' => 'search',
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller' => 'Listings',
+                        'action' => 'search'
 
                     ]
                 ],
@@ -84,26 +91,29 @@ return [
         ]
     ],
     'session_containers' => [
-        'CountryRoute'
+//         'CountryRoute'
     ],
     'controllers' => [
         'factories' => [
-            Controller\IndexController::class => IndexControllerFactory::class,
-            ListingsController::class=>ListingsControllerFactory::class
+            "Application\Controller\Index" => IndexControllerFactory::class,
+            "Application\Controller\Listings"=>ListingsControllerFactory::class
         ]
     ],
     'service_manager' => array(
         'factories' => array(
             RecognitionService::class => RecognitionServiceFactory::class,
             ListingsSearchService::class=>ListingsSearchServiceFactory::class,
+            TransactionService::class=>TransactionServiceFactory::class
         )
     ),
     "view_helpers"=>[
         "factories"=>[
-            FlagHelper::class=>FlagHelperFactory::class
+            FlagHelper::class=>FlagHelperFactory::class,
+            "Application\View\Helper\DashboardListingConditionHelper"=>DashboardListingConditionHelperFactory::class,
         ],
         'aliases' => [
-            'defaultFlagRoute' => FlagHelper::class
+            'defaultFlagRoute' => FlagHelper::class,
+            "dlc"=>"Application\View\Helper\DashboardListingConditionHelper"
         ]
     ],
     'view_manager' => [
@@ -122,6 +132,7 @@ return [
             "application/partial/layout_menu"=>__DIR__ . '/../view/layout/partials/layout_header_menu.phtml',
             "application/partial/layout_search_form_header"=>__DIR__ . '/../view/layout/partials/layout_serach_header.phtml',
             "application/partial/layout_searchbar"=>__DIR__ . '/../view/layout/partials/layout_header_searchbar.phtml',
+            "application/partial/layout_searchbarfilter"=>__DIR__ . '/../view/layout/partials/layout_search_filter.phtml',
             'error/404' => __DIR__ . '/../view/error/404.phtml',
             'error/index' => __DIR__ . '/../view/error/index.phtml'
         ],

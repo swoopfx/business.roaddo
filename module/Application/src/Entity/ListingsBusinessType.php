@@ -6,7 +6,7 @@ use Application\Entity\ListingsSegment;
 
 /**
  * Retail business
- * ServiceBusiness
+ * Service Business
  *
  *
  * @ORM\Entity

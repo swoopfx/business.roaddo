@@ -8,17 +8,17 @@ use User\Entity\User;
 class UserService
 {
 
-    const USER_ROLE_SETUP_BROKER = 3;
+//    const USER_ROLE_SETUP_= 3;
+//
+//    const USER_ROLE_SETUP_AGENT = 2;
+//
+//    const USER_ROLE_BROKER = 200;
+//
+//    const USER_ROLE_BROKER_CHILD = 210;
 
-    const USER_ROLE_SETUP_AGENT = 2;
+//    const USER_ROLE_AGENT = 100;
 
-    const USER_ROLE_BROKER = 200;
-
-    const USER_ROLE_BROKER_CHILD = 210;
-
-    const USER_ROLE_AGENT = 100;
-
-    const USER_ROLE_CUSTOMER = 25;
+    const USER_ROLE_USER = 100;
 
 
     const USER_STATE_DISABLED = 1;

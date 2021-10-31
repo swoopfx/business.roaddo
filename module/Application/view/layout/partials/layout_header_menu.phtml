@@ -1,49 +1,51 @@
 <div class="tl-menu menu-absolute menu-sticky">
-    <nav class="navbar navbar-expand-lg p-0">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo-white.png" alt="Logo" class="img-fluid">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"><i class="fa fa-align-justify"></i></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="tl-dropdown active">
-                        <a href="#">Home</a>
-                        <ul class="tl-dropdown-menu">
-                            <li class="active"><a href="index.html">Home V-1</a></li>
-                            <li><a href="index1.html">Home V-2</a></li>
-                            <li><a href="dashboard.html">Home Dashboard</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="property.html">Service</a></li>
-                    <li class="tl-dropdown">
-                        <a href="#">Pages</a>
-                        <ul class="tl-dropdown-menu">
-                            <li><a href="team.html">Agents</a></li>
-                            <li><a href="blog-list.html">Blog List View</a></li>
-                            <li><a href="blog-list.html">Blog List View</a></li>
-                            <li><a href="blog-details.html">Blog Details</a></li>
-                            <li><a href="agent-details.html">Agent Details</a></li>
-                            <li><a href="property-submit.html">Property Submit</a></li>
-                            <li><a href="property-details.html">Property Details</a></li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="sign-up.html">Sign Up</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </div>
-            <div class="right-content">
+	<nav class="navbar navbar-expand-lg p-0">
+		<div class="container">
+			<a class="navbar-brand" href="index.html"> <img
+				src="assets/images/logo-white.png" alt="Logo" class="img-fluid">
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNav" aria-controls="navbarNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"><i class="fa fa-align-justify"></i></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li><a href="<?php  echo $this->url("home")?>">Home</a>
+<!-- 						<ul class="tl-dropdown-menu"> -->
+<!-- 							<li class="active"><a href="index.html">Home V-1</a></li> -->
+<!-- 							<li><a href="index1.html">Home V-2</a></li> -->
+<!-- 							<li><a href="dashboard.html">Home Dashboard</a></li> -->
+<!-- 						</ul> -->
+						</li>
+<!-- 					<li><a href="about.html">About</a></li> -->
+<!-- 					<li><a href="property.html">Service</a></li> -->
+					<li class="tl-dropdown"><a href="#">Buy a Business</a>
+						<ul class="tl-dropdown-menu">
+							<li><a href="<?php  echo $this->url("listings")?>">Business for Sale</a></li>
+							<li><a href="<?php  echo $this->url("user-register")?>">Register as a Buyer</a></li>
+							
+						</ul></li>
+						
+						<li class="tl-dropdown"><a href="#">Sell A Business</a>
+						<ul class="tl-dropdown-menu">
+							<li><a href="<?php  echo $this->url("board")?>">Sell A Business</a></li>
+							<li><a href="<?php  //echo $this->url("")?>">How to Sell</a></li>
+						</ul></li>
+					<li><a href="">Value A a Business</a></li>
+<!-- 					<li><a href="contact.html">Contact</a></li> -->
+				</ul>
+			</div>
+			<div class="right-content">
 
-                <div class="lt-button">
-                    <vu
-                    <a href="#" class="btn btn-primary">Create A Listing</a>
+				<div class="lt-button">
+				
+<?php echo $this->dlc() ?>
                 </div>
-            </div>
-        </div><!-- /.container -->
-    </nav><!-- /.navbar -->
-</div><!-- /.tl-menu -->
+			</div>
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- /.navbar -->
+</div>
+<!-- /.tl-menu -->

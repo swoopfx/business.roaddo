@@ -4,58 +4,167 @@ echo $this->headtitle("Register");
 
 ?>
 
-
-<div class="lt-page-content bg-color">
-    <div class="lt-section">
-        <div class="section-content lt-account section-padding">
-            <div class="account-content bg-white">
-                <h2>Sign Up For Account</h2>
-                <form action="#" class="lt-form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="User Name">
-                        <div class="input-addon">
-                            <i class="fa fa-user-o" aria-hidden="true"></i>
+<div id="registerapp">
+    <div class="lt-page-content bg-color">
+        <div class="lt-section">
+            <div class="section-content lt-account section-padding">
+                <div class="account-content bg-white">
+                    <h2>Sign Up For Account</h2>
+                    <form action="#" class="lt-form" onsubmit="event.preventDefault();">
+                        <div class="form-group">
+                            <input type="text" ref="firstname" class="form-control" placeholder="First Name">
+                            <div class="input-addon">
+                                <i class="fa fa-user-o" aria-hidden="true"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email Address ">
-                        <div class="input-addon">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        <div class="form-group">
+                            <input type="text" ref="lastname" class="form-control" placeholder="last Name">
+                            <div class="input-addon">
+                                <i class="fa fa-user-o" aria-hidden="true"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <div class="input-addon">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        <div class="form-group">
+                            <input type="text" ref="phone" class="form-control" placeholder="Phone Number">
+                            <div class="input-addon">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Repeat-Password">
-                        <div class="input-addon">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
+                        <div class="form-group">
+                            <input type="email" ref="email" class="form-control" placeholder="Email Address ">
+                            <div class="input-addon">
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <select class="form-control">
-                            <option value="subscriber">Subscriber Type </option>
-                            <option value="visitor">Visitor</option>
-                            <option value="customer">Customer</option>
-                        </select>
-                    </div>
-                    <div class="form-group tnc">
-                        <input type="checkbox" name="tnc" id="tnc">
-                        <label for="tnc">I agree with <a href="#">* terms & conditions</a></label>
-                    </div>
-                    <input type="submit" value="Sign Up" class="btn btn-primary">
-                    <div class="account-link justify-content-between d-flex">
-                        <span>Have an account? <a href="<?= $this->url("login")?>" class="color">Login</a></span>
-                    </div>
-                </form>
-            </div><!-- container -->
-        </div><!-- lt-agent-details -->
-    </div><!-- lt-section -->
-</div><!-- /.lt-page-content -->
+                        <div class="form-group">
+                            <input type="password" ref="password" class="form-control" placeholder="Password">
+                            <div class="input-addon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" ref="rPassword" class="form-control" placeholder="Repeat-Password">
+                            <div class="input-addon">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <!--                    <div class="form-group">-->
+                        <!--                        <select class="form-control">-->
+                        <!--                            <option value="subscriber">Subscriber Type </option>-->
+                        <!--                            <option value="visitor">Visitor</option>-->
+                        <!--                            <option value="customer">Customer</option>-->
+                        <!--                        </select>-->
+                        <!--                    </div>-->
+                        <div class="form-group tnc">
+                            <input type="checkbox" name="tnc" id="tnc">
+                            <label for="tnc">I agree with <a href="#">* terms & conditions</a></label>
+                        </div>
+
+                        <div class="form-group tnc">
+                            <input type="checkbox" name="tnc" id="tnc">
+                            <label for="tnc">I agree with <a href="#">* terms & conditions</a></label>
+                        </div>
+
+                        <button @click="register()" :disabled="isClickRegistering" class="btn btn-primary btn-block">
+                            <div v-if="isClickRegistering">...Processing</div>
+                            <div v-else>Sign Up</div>
+                        </button>
+                        <div class="account-link justify-content-between d-flex">
+                            <span>Have an account? <a href="<?= $this->url("login") ?>" class="color">Login</a></span>
+                        </div>
+                    </form>
+                </div><!-- container -->
+            </div><!-- lt-agent-details -->
+        </div><!-- lt-section -->
+    </div><!-- /.lt-page-content -->
+</div>
+<script src="https://unpkg.com/vue-router"></script>
+<script>
+    Vue.use(VueToast, {
+        // One of options
+        position: 'top'
+    });
+
+    var router = new VueRouter({
+        mode: 'history',
+        routes: []
+    });
+    let registerapp = new Vue({
+
+        router,
+        el: "#registerapp",
+        data() {
+            return {
+                isClickRegistering: false,
+            }
+        },
+        methods: {
+            register() {
+                // console.log("KKKKK");
+                this.isClickRegistering = true;
+                if (this.$refs.firstname.value == "" || this.$refs.lastname.value == "" || this.$refs.email.value == "" || this.$refs.phone.value == "" || this.$refs.password.value == "" || this.$refs.rPassword.value == "") {
+                    // console.log(this.$route.query.suid);
+
+                    this.$toast.open({
+								message: "Either field cannot be empty",
+								type: "error",
+								duration: 5000,
+								dismissible: true
+							})
+                    // swal({
+                    //     title: "Required Field",
+                    //     text: "One of the rwequired field is empty",
+                    //     icon: "error",
+                    //     button: "Continue!",
+                    // })
+                    this.isClickRegistering = false;
+                } else {
+                    if (this.$refs.password.value == this.$refs.rPassword.value) {
+                        let formData = new FormData();
+                        formData.append("firstname", this.$refs.firstname.value);
+                        formData.append("lastname", this.$refs.lastname.value);
+                        formData.append('email', this.$refs.email.value);
+                        formData.append("phone", this.$refs.phone.value);
+                        formData.append("password", this.$refs.password.value);
+                        formData.append("passwordVerify", this.$refs.rPassword.value);
+                        if (this.$route.query.suid != "") {
+                            formData.append("suid", this.$route.query.suid);
+                        }
+                        axios.post("/register/registerjson", formData).then(res => {
+                            if(res.status == 201){
+                                swal({
+								title: "HURRAY",
+								text: "Please Confirm you email, a link has been sent to your email",
+								icon: "success",
+								button: "Continue"
+							})
+                            }
+
+                        }).catch(err => {
+                            this.isClickRegistering = false;
+                            swal({
+								title: "Error",
+								text: JSON.stringify(err.response.data),
+								icon: "error",
+								button: "YES"
+							})
+                        });
+                    }else{
+                        swal({
+                        title: "Password Dont Match",
+                        text: "Please check you password and verify again",
+                        icon: "error",
+                        button: "Continue!",
+                    })
+                    }
+                }
+
+            }
+        },
+    });
+</script>

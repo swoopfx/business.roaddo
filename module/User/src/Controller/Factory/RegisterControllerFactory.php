@@ -9,6 +9,7 @@ use User\Controller\RegisterController;
 use User\Form\Fieldset\UserBasicFieldset;
 use User\Form\RegisterForm;
 use User\Service\RegisterService;
+use Application\Service\TransactionService;
 
 class RegisterControllerFactory implements FactoryInterface
 {
@@ -22,6 +23,7 @@ class RegisterControllerFactory implements FactoryInterface
         $generalService = $container->get(GeneralService::class);
         $registerForm = $container->get('FormElementManager')->get(RegisterForm::class);
         $registerService = $container->get(RegisterService::class);
+        $transactionService = $container->get(TransactionService::class);
         $ctr->setRegisterForm($registerForm)
             ->setRegisterService($registerService)
             ->setEntityManager($generalService->getEntityManager())

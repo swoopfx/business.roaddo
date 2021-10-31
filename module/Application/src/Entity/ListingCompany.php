@@ -3,6 +3,7 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use General\Entity\FileUpload;
+use User\Entity\User;
 
 
 /**
@@ -23,6 +24,12 @@ class ListingCompany
      *     
      */
     private $id;
+
+    /**
+     * @ORM\Column(name="company_uid", type="string", nullable=true)
+     * @var string
+     */
+    private $companyUid;
 
     /**
      * @ORM\Column(name="company_title", type="string", nullable=false)
@@ -60,6 +67,13 @@ class ListingCompany
      * @var \DateTime
      */
     private $updatedOn;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User\Entity\User")
+     * @var User
+     * 
+     */
+    private $user;
 
     /**
      */
@@ -160,6 +174,7 @@ class ListingCompany
     public function setCreatedOn(\DateTime $createdOn)
     {
         $this->createdOn = $createdOn;
+        $this->updatedOn = $createdOn;
         return $this;
     }
 
@@ -187,6 +202,48 @@ class ListingCompany
     {
         return $this->updatedOn;
     }
+    /**
+     * @return the $isActive
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @return the $user
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param \User\Entity\User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+        return $this;
+    }
+    /**
+     * @return the $companyUid
+     */
+    public function getCompanyUid()
+    {
+        return $this->companyUid;
+    }
+
+    /**
+     * @param string $companyUid
+     */
+    public function setCompanyUid($companyUid)
+    {
+        $this->companyUid = $companyUid;
+        return $this;
+    }
+
+
 
 
 }

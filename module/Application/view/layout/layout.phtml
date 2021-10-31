@@ -22,6 +22,7 @@
         'href' => $this->basePath() . '/img/favicon.ico'
     ])
         ->prependStylesheet($this->basePath('assets/css/app.css'))
+        ->prependStylesheet("https://cdn.jsdelivr.net/npm/vue-toast-notification/dist/theme-default.css")
         ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
     ?>
 
@@ -38,6 +39,7 @@
     <!-- Scripts -->
     <?= $this->headScript()->prependFile("https://unpkg.com/sweetalert/dist/sweetalert.min.js")
 //        ->prependFile("https://cdn.jsdelivr.net/npm/vue-toast-notification")
+->prependFile("https://cdn.jsdelivr.net/npm/vue-toast-notification@0.6.2/dist/index.min.js")
         ->prependFile($this->basePath('assets/js/axios.min.js'))
         ->prependFile($this->basePath('assets/js/vue.js')) ?>
 </head>

@@ -2,6 +2,7 @@
 namespace User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use General\Entity\Country;
 use Laminas\Form\Annotation;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -22,22 +23,22 @@ class User
      */
     protected $id;
 
-    /**
-     *
-     * @var string @ORM\Column(name="username", type="string", length=30, nullable=false, unique=true)
-     *      @Annotation\Type("Laminas\Form\Element\Text")
-     *      @Annotation\Filter({"name":"StripTags"})
-     *      @Annotation\Filter({"name":"StringTrim"})
-     *      @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "min":6, "max":30}})
-     *      @Annotation\Validator({"name":"Regex", "options":{"pattern":"/^[ña-zÑA-Z0-9\_\-]+$/"}})
-     *      @Annotation\Required(true)
-     *      @Annotation\Attributes({
-     *      "type":"text",
-     *      "required":"true"
-     *      })
-     *      @Annotation\Options({"label":"Phone Number"})
-     */
-    protected $username;
+//    /**
+//     *
+//     * @var string @ORM\Column(name="username", type="string", length=30, nullable=false, unique=true)
+//     *      @Annotation\Type("Laminas\Form\Element\Text")
+//     *      @Annotation\Filter({"name":"StripTags"})
+//     *      @Annotation\Filter({"name":"StringTrim"})
+//     *      @Annotation\Validator({"name":"StringLength", "options":{"encoding":"UTF-8", "min":6, "max":30}})
+//     *      @Annotation\Validator({"name":"Regex", "options":{"pattern":"/^[ña-zÑA-Z0-9\_\-]+$/"}})
+//     *      @Annotation\Required(true)
+//     *      @Annotation\Attributes({
+//     *      "type":"text",
+//     *      "required":"true"
+//     *      })
+//     *      @Annotation\Options({"label":"Phone Number"})
+//     */
+//    protected $username;
 
     /**
      *
@@ -80,6 +81,14 @@ class User
      *      })
      */
     protected $email;
+
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="General\Entity\Country")
+     * @var  Country
+     */
+    private $country;
 
     /**
      *
@@ -786,6 +795,78 @@ class User
 
     public function getRoles()
     {}
+
+    /**
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName(string $firstName): User
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName(string $lastName): User
+    {
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $phoneNumber
+     * @return User
+     */
+    public function setPhoneNumber(string $phoneNumber): User
+    {
+        $this->phoneNumber = $phoneNumber;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param Country $country
+     * @return User
+     */
+    public function setCountry(Country $country): User
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+    /**
+     * @return Country
+     */
+    public function getCountry(): Country
+    {
+        return $this->country;
+    }
     
     // public function addBrokerChild(){
     

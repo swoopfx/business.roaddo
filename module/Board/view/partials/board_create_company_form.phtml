@@ -1,0 +1,134 @@
+<script src="https://cdn.tiny.cloud/1/4jv85s7jytn1usktg4s3umtqnnmsmhk9hhrprh8le6uqh8sb/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+				<script>
+
+
+	tinymce.init({
+		 selector: 'textarea#editor',
+		 height: 500,
+		 menubar: false,
+		 plugins: [
+		   'advlist autolink lists link image media charmap print preview anchor',
+		   'searchreplace visualblocks code fullscreen',
+		   'insertdatetime media table paste code help wordcount'
+		 ],
+		 toolbar: 'undo redo | formatselect | ' +
+		 'bold italic backcolor | alignleft aligncenter ' +
+		 'alignright alignjustify | '+'| insertfile image media |'+' | bullist numlist outdent indent | ' +
+		 'removeformat | help',
+		 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+	   });
+
+
+
+
+				</script>
+<div  id="vCreateCompany">
+		<div class="bg-white sub-section">
+			<div class="ds-header d-flex justify-content-between">
+				<div class="title">
+					<h1>Create A Company</h1>
+				</div>
+
+
+			</div>
+			<div class="view-statistics">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label for="companyName">Company Name</label> <input type="text"
+								v-model="companyTitle" class="form-control">
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="form-group">
+
+							<label for="companyName">Company Profile</label> <textarea
+								type="textarea" id="editor" v-model="companyProfile" class="form-control"></textarea>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<div class="add-photo">
+								<input type="file" ref="companyLogo" name="add-photo"
+									id="add-photo" class="inputfile form-control inputfile-4"
+									data-multiple-caption="{count} files selected" multiple /> <label
+									for="add-photo"><i class="fa fa-camera" aria-hidden="true"></i>
+									<span>Add Photo</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<button @click="createCompany()" :disabled="isSCreatingCompany"
+								class="btn btn-primary btn-block"><div v-if="isSCreatingCompany">...Processing</div><div v-else> Create</div></button>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/js/base64_coder.js"></script>
+<script>
+		let vCreateCompany = new Vue({
+			el:"#vCreateCompany",
+			data() {
+				return {
+					companyTitle: "Welcome",
+					companyLogo:'',
+					companyProfile:"",
+					isSCreatingCompany:false,
+
+					createdCompany:[],
+
+				}
+			},
+
+			
+
+			methods: {
+
+				
+
+				createCompany() {
+					this.companyProfile = tinymce.activeEditor.getContent();
+				  if(this.companyTitle == ""){
+
+					swal({
+						title: "Error",
+								text: "You must Provide a company Name",
+								icon: "error",
+								button: "Continue"
+							});
+
+				  }else if(this.companyProfile == ""){
+					swal({
+						title: "Error",
+								text: "Please profile a description for this company",
+								icon: "error",
+								button: "Continue"
+							});
+				  }else{
+					  console.log(Base64.encode("liiiii"));
+					//   console.log(this.companyProfile);
+					  let formData = new FormData();
+					  formData.append("companyTitle", this.companyTitle);
+					  formData.append("companyProfile", Base64.encode(this.companyProfile));
+
+					  axios.post("/dashboard/board/postcreatecompany", formData).then(res=>{
+						  if(res.status == 201){
+							  window.location.reload();
+						  }
+					  }).catch(err=>{
+
+					  });
+				  }
+				}
+			},
+		})
+	</script>
