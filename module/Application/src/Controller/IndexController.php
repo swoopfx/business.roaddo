@@ -15,6 +15,7 @@ use General\Entity\Country;
 use General\Entity\Zone;
 use Application\Entity\ListingBusinessState;
 use Application\Entity\ListingsCategory;
+use General\Entity\TurnOverTerm;
 
 class IndexController extends AbstractActionController
 {
@@ -120,6 +121,7 @@ class IndexController extends AbstractActionController
         $jsonModel = new JsonModel();
         $em = $this->entityManager;
         $id = $this->params()->fromRoute("id", NULL);
+        
         $response = $this->getResponse();
         if ($id == NULL) {
             $response->setStatusCode(400);
@@ -143,6 +145,23 @@ class IndexController extends AbstractActionController
                 "data" => $data
             ]);
         }
+        return $jsonModel;
+    }
+
+    public function getTurnOverTermAction()
+    {
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $repo = $em->getRepository(TurnOverTerm::class);
+        $data = $repo->createQueryBuilder("s")
+            ->select([
+            "s"
+        ])
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+        $jsonModel->setVariables([
+            "data" => $data
+        ]);
         return $jsonModel;
     }
 

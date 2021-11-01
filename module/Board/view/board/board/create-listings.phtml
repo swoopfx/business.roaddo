@@ -126,38 +126,36 @@ echo $this->headtitle("Create listings");
 					<div v-if="country.length" class="form-group">
 
 						<label>Country of Business</label> <select name="language"
-							id="language" class="form-control" v-model="selectedCountry" @change="selectedNewCountry(selectedCountry)">
-							
-							<option v-for="option in country">{{option.countryName}}</option>
+							id="language" class="form-control" v-model="selectedCountry"
+							@change="selectedNewCountry(selectedCountry)">
+
+							<option v-for="option in country" :value="option.id">{{option.countryName}}</option>
 
 						</select>
 
 					</div>
 
-					<div class="form-group">
+					<div v-if="zone.length" class="form-group">
 
+						<label>City of Business</label> <select 
+							name="city" id="language" class="form-control"
+							v-model="selectedZone">
 
-						<label>City of Business</label> <select v-model="selectedZone" class="form-control">
-
-							<option v-for="option in zone" v-bind:value="option.id">{{
-								option.zoneName}}</option>
+							<option v-for="option in zone">{{option.zoneName}}</option>
 
 						</select>
-						<div v-for="option in zone">
-							<input :disabled="zoneStatus" type="radio" name="segment"
-								:value="option.id"> <label>{{option.zoneName}}</label><br>
-						</div>
+
 					</div>
 
 
 					<div class="form-group">
-						<label for="companyName">Number Of Employees</label> <input
-							type="text" v-model="companyTitle" class="form-control">
+						<label >Number Of Employees</label> <input
+							type="number" ref="numberOfEmployees" class="form-control">
 					</div>
 
 					<div class="form-group">
 						<label for="companyName">Business Website</label> <input
-							type="text" v-model="companyTitle" class="form-control">
+							type="url" ref="businessWebsite" class="form-control">
 					</div>
 
 				</div>
@@ -171,7 +169,7 @@ echo $this->headtitle("Create listings");
 					<h2>Financial Details</h2>
 					<hr>
 
-					
+
 
 					<div class="form-group">
 						<label for="companyName">Asking Price</label> <input type="text"
@@ -186,18 +184,13 @@ echo $this->headtitle("Create listings");
 							v-model="turnOver" class="form-control">
 					</div>
 
-					<div class="form-group">
+					<div v-if="turnOverTerm.length" class="form-group">
 
 
-						<label>Turn Over Term</label> <select class="form-control">
-
-							<option v-for="option in zone" v-bind:value="option.id">{{
-								option.zoneName}}</option>
-
-						</select>
-						<div v-for="option in zone">
-							<input :disabled="zoneStatus" type="radio" name="segment"
-								:value="option.id"> <label>{{option.zoneName}}</label><br>
+					<label>Turn Over Term</label>	
+					<div v-for="option in turnOverTerm">
+							<input type="radio" name="segment"
+								:value="option.id"> <label>{{option.term}}</label><br>
 						</div>
 					</div>
 
@@ -208,18 +201,13 @@ echo $this->headtitle("Create listings");
 							v-model="turnOver" class="form-control">
 					</div>
 
-					<div class="form-group">
+					<div v-if="turnOverTerm.length" class="form-group">
 
 
-						<label>Net Profit Term</label> <select class="form-control">
-
-							<option v-for="option in zone" v-bind:value="option.id">{{
-								option.zoneName}}</option>
-
-						</select>
-						<div v-for="option in zone">
-							<input :disabled="zoneStatus" type="radio" name="segment"
-								:value="option.id"> <label>{{option.zoneName}}</label><br>
+						<label>Net Profit Term</label>
+						<div v-for="option in turnOverTerm">
+							<input type="radio" name="segment"
+								:value="option.id"> <label>{{option.term}}</label><br>
 						</div>
 					</div>
 
@@ -295,9 +283,14 @@ echo $this->headtitle("Create listings");
         el:"#create_listing",
         data() {
             return {
+
+				isLoadiningZone:false,
+
+
                 createdCompany: [],
                 selectedCompany:"",
                 selectedCountry:"",
+				selectedZone:"",
 				selectedBusinessState:10,
                 isShowNextFieldset:false,
 				companyTitle:'',
@@ -312,10 +305,15 @@ echo $this->headtitle("Create listings");
 				zone:[],
 				businessState:[],
 				baseCategory:[],
+				turnOverTerm:[],
 
 				//Listing Details
 				selectedCompanyName:"",
 				selectedBusinessType:"",
+
+				//CategorySession;
+				isBeginCategorySession:false,
+				selectedCategory:[],
 
 
 
@@ -328,6 +326,7 @@ echo $this->headtitle("Create listings");
 			this.getBusinessSegment();
 			this.getCountry();
 			this.getBusinessState();
+			this.getTurnOverTerm();
 
         },
 
@@ -341,7 +340,7 @@ echo $this->headtitle("Create listings");
                 }
             },
 			zoneStatus(){
-				if(selectedCountry == ""){
+				if(this.zone){
 					return true;
 				}else{
 					return false;
@@ -379,18 +378,21 @@ echo $this->headtitle("Create listings");
 				});
             },
 			selectedNewCountry(id){
+				this.isLoadiningZone = true;
 				this.getZone(id);
+				console.log(this.zone[0].zoneName);
+				this.isLoadiningZone = false;
 			},
 
             getZone(id){
-                axios.get("/application/get-zone").then(res=>{
-					if(res.ststus == 200){
+                axios.get("/application/get-zone/"+id).then(res=>{
+					if(res.status == 200){
 						this.zone = res.data.data;
 					}
 				}).catch(err=>{
 
 				});
-                },
+            },
 
 			getBusinessState(){
 				axios.get("/application/get-business-state").then(res=>{
@@ -415,6 +417,14 @@ echo $this->headtitle("Create listings");
 					}).catch();
 			},
 
+			getTurnOverTerm(){
+				axios.get("/application/get-turn-over-term").then(res=>{
+					if(res.status == 200){
+						this.turnOverTerm = res.data.data;
+					}
+				}).catch();
+			},
+
 			getBaseCategory(){
 				axios.get("/application/get-base-listing-category").then(res=>{
 					if(res.status == 200){
@@ -432,7 +442,11 @@ echo $this->headtitle("Create listings");
 							this.createdCompany = res.data.data;
 						}
 					}).catch();
-            }
+            },
+
+			beginCategorySession(){
+				this.
+			}
         },
     });
 </script>

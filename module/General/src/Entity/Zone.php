@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Zone
  *
  * @ORM\Table(name="zone", indexes={@ORM\Index(name="FK_zone_country_idx", columns={"country_id"})})
- * @ORM\Entity(repositoryClass="Settings\Entity\Repository\ZoneRepository")
+ * @ORM\Entity
  */
 class Zone
 {

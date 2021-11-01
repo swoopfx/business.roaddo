@@ -64,6 +64,12 @@ class Country
      * @var boolean
      */
     private $status = true;
+    
+    /**
+     * @ORM\Column(name="is_activated", type="boolean", nullable=false, options={"default"="1"})
+     * @var boolean
+     */
+    private $isActivated;
 
     /**
      */
