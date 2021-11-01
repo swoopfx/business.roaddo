@@ -1,7 +1,5 @@
 <?php
-
-declare(strict_types=1);
-
+declare(strict_types = 1);
 namespace Application\Controller;
 
 use Laminas\Mvc\Controller\AbstractActionController;
@@ -13,80 +11,173 @@ use Doctrine\ORM\EntityManager;
 use General\Service\GeneralService;
 use Doctrine\ORM\Query;
 use Application\Entity\ListingsSegment;
+use General\Entity\Country;
+use General\Entity\Zone;
+use Application\Entity\ListingBusinessState;
+use Application\Entity\ListingsCategory;
 
 class IndexController extends AbstractActionController
 {
-    
+
     /**
-     * 
+     *
      * @var GeneralService
      */
     private $genealService;
-    
+
     /**
-     * 
+     *
      * @var EntityManager
      */
     private $entityManager;
-    
+
     /**
-     * 
+     *
      * @var RecognitionService
      */
     private $recognitionService;
-    
-//     private 
+
+    // private
     public function indexAction()
     {
         $this->recognitionService->implement();
-        return new ViewModel(
-            array(
-                "countryRoutes"=>$this->recognitionService->getCountryRoute()
-            )
-        );
+        return new ViewModel(array(
+            "countryRoutes" => $this->recognitionService->getCountryRoute()
+        ));
     }
-    
-    public function getListingBusinessTypeAction(){
+
+    public function getListingBusinessTypeAction()
+    {
         $jsonModel = new JsonModel();
         $em = $this->entityManager;
         $repo = $em->getRepository(ListingsBusinessType::class);
-        $data = $repo->createQueryBuilder('s')->select(["s"])->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        $data = $repo->createQueryBuilder('s')
+            ->select([
+            "s"
+        ])
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
         $jsonModel->setVariables([
-            "data"=>$data
+            "data" => $data
         ]);
         return $jsonModel;
     }
-    
-    public function getListingBusinessSegmentAction(){
+
+    public function getListingBusinessSegmentAction()
+    {
         $jsonModel = new JsonModel();
         $em = $this->entityManager;
         $repo = $em->getRepository(ListingsSegment::class);
-        $data = $repo->createQueryBuilder('s')->select(["s"])->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        $data = $repo->createQueryBuilder('s')
+            ->select([
+            "s"
+        ])
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
         $jsonModel->setVariables([
-            "data"=>$data
+            "data" => $data
         ]);
         return $jsonModel;
     }
-    
-    public function getBaseListingCategoryAction(){
-        
+
+    public function getBusinessStateAction()
+    {
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $repo = $em->getRepository(ListingBusinessState::class);
+        $data = $repo->createQueryBuilder("s")
+            ->select([
+            "s"
+        ])
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+        $jsonModel->setVariables([
+            "data" => $data
+        ]);
+        return $jsonModel;
     }
-    
-    public function getChildListingCategoryAction(){
+
+    public function getCountryAction()
+    {
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $repo = $em->getRepository(Country::class);
+        $data = $repo->createQueryBuilder("s")
+            ->select([
+            "s"
+        ])
+            ->getQuery()
+            ->setMaxResults(400)
+            ->getResult(Query::HYDRATE_ARRAY);
+        $jsonModel->setVariables([
+            "data" => $data
+        ]);
+        return $jsonModel;
+    }
+
+    public function getZoneAction()
+    {
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $id = $this->params()->fromRoute("id", NULL);
+        $response = $this->getResponse();
+        if ($id == NULL) {
+            $response->setStatusCode(400);
+            $jsonModel->setVariables([
+                "error" => "Absent Identifier"
+            ]);
+        } else {
+            $repo = $em->getRepository(Zone::class);
+            $data = $repo->createQueryBuilder("s")
+                ->select([
+                "s"
+            ])
+                ->where("s.country = :count")
+                ->setParameters([
+                "count" => $id
+            ])
+                ->getQuery()
+                ->getResult(Query::HYDRATE_ARRAY);
+            
+            $jsonModel->setVariables([
+                "data" => $data
+            ]);
+        }
+        return $jsonModel;
+    }
+
+    public function getBaseListingCategoryAction()
+    {
+        $jsonModel = new JsonModel();
+        $em = $this->entityManager;
+        $repo = $em->getRepository(ListingsCategory::class);
+        $data = $repo->createQueryBuilder("s")
+            ->select([
+            "s"
+        ])
+            ->where("s.parent = :parent")
+            ->setParameters([
+            "parent" => NULL
+        ])
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
+        return $jsonModel;
+    }
+
+    public function getChildListingCategoryAction()
+    {
         $jsonModel = new JsonModel();
         return $jsonModel;
     }
 
-
-
-    public function getsAction(){
+    public function getsAction()
+    {
         $viewmodel = new ViewModel();
         return $viewmodel;
     }
-    
-    
 
     /**
+     *
      * @return the $genealService
      */
     public function getGenealService()
@@ -95,6 +186,7 @@ class IndexController extends AbstractActionController
     }
 
     /**
+     *
      * @return the $entityManager
      */
     public function getEntityManager()
@@ -103,6 +195,7 @@ class IndexController extends AbstractActionController
     }
 
     /**
+     *
      * @return the $recognitionService
      */
     public function getRecognitionService()
@@ -111,7 +204,8 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * @param field_type $genealService
+     *
+     * @param field_type $genealService            
      */
     public function setGenealService($genealService)
     {
@@ -120,7 +214,8 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * @param field_type $entityManager
+     *
+     * @param field_type $entityManager            
      */
     public function setEntityManager($entityManager)
     {
@@ -129,12 +224,12 @@ class IndexController extends AbstractActionController
     }
 
     /**
-     * @param field_type $recognitionService
+     *
+     * @param field_type $recognitionService            
      */
     public function setRecognitionService($recognitionService)
     {
         $this->recognitionService = $recognitionService;
         return $this;
     }
-
 }

@@ -1,0 +1,438 @@
+<?php
+echo $this->headtitle("Create listings");
+?>
+<script
+	src="https://cdn.tiny.cloud/1/4jv85s7jytn1usktg4s3umtqnnmsmhk9hhrprh8le6uqh8sb/tinymce/5/tinymce.min.js"
+	referrerpolicy="origin"></script>
+<script src="/js/base64_coder.js"></script>
+<script>
+
+
+	tinymce.init({
+		 selector: 'textarea#editor',
+		 height: 500,
+		 menubar: false,
+		 plugins: [
+		   'advlist autolink lists link image media charmap print preview anchor',
+		   'searchreplace visualblocks code fullscreen',
+		   'insertdatetime media table paste code help wordcount'
+		 ],
+		 toolbar: 'undo redo | formatselect | ' +
+		 'bold italic backcolor | alignleft aligncenter ' +
+		 'alignright alignjustify | '+'| insertfile image media |'+' | bullist numlist outdent indent | ' +
+		 'removeformat | help',
+		 content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+	   });
+
+
+
+
+				</script>
+<h1 class="db-title">Create A Business Listing</h1>
+
+<div class="add-agent bg-white sub-section">
+
+	<div id="create_listing">
+		<div class="row">
+			<!-- 			<div class="col-md-4"> -->
+			<!-- 				<div class="form-group"> -->
+			<!-- 					<label>Select A Company</label> <select -->
+			<!-- 						v-if="createdCompany.length" class="form-control" -->
+			<!-- 						v-model="selectedCompany" -->
+			<!-- 						@change="changeSelectedCompany(selectedCompany)"> -->
+
+			<!-- 						<option v-for="option in createdCompany" v-bind:value="option.id">{{ -->
+			<!-- 							option.companyTitle}}</option> -->
+
+			<!-- 					</select> -->
+			<!-- 				</div> -->
+			<!-- 			</div> -->
+			<!-- 			<div class="col-md-1">OR</div> -->
+
+			<!-- 			<div class="col-md-4"> -->
+			<!-- 				<button class="btn btn-block btn-primary" data-toggle="modal" -->
+			<!-- 					data-target="#myModal">Create new Company</button> -->
+			<!-- 			</div> -->
+		</div>
+
+
+		<!-- <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Agent User Name">
+                                </div> -->
+		<div>
+			<!-- 			<hr> -->
+			<!-- 			<h2></h2> -->
+			<div class="row">
+				<div class="col-md-6">
+					<h2>Business Details</h2>
+					<hr>
+
+					<div class="form-group">
+						<label for="companyName">Business Title</label> <input type="text"
+							v-model="companyTitle" class="form-control">
+					</div>
+
+
+
+					<div class="form-group">
+
+						<label for="companyName">Business Information</label>
+						<textarea type="textarea" id="editor" v-model="companyProfile"
+							class="form-control"></textarea>
+					</div>
+
+
+
+					<div class="form-group">
+						<div class="add-photo">
+							<input type="file" ref="companyLogo" name="add-photo"
+								id="add-photo" class="inputfile form-control inputfile-4"
+								data-multiple-caption="{count} files selected" multiple /> <label
+								for="add-photo"><i class="fa fa-camera" aria-hidden="true"></i>
+								<span>Add Photo</span></label>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label>Listing Name</label> <input type="text"
+							class="form-control" placeholder="Listing Name">
+					</div>
+				</div>
+				<div class="col-md-6">
+
+					<div class="form-group">
+						<label>Business Category</label><br>
+						<button class="btn btn-primary btn-sm" @click="">Add Category</button>
+						<!-- <div v-for="option in businessSegment">
+							<input type="radio" name="segment" :value="option.id"> <label>{{option.segment}}</label><br>
+						</div> -->
+					</div>
+
+					<div class="form-group">
+						<label>Business Segment</label>
+						<div v-for="option in businessSegment">
+							<input type="radio" name="segment" :value="option.id"> <label>{{option.segment}}</label><br>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label>Status Of Business</label>
+						<div v-for="option in businessState">
+							<input type="radio" name="segment" :value="option.id"> <label>{{option.state}}</label><br>
+						</div>
+					</div>
+
+					<div v-if="country.length" class="form-group">
+
+						<label>Country of Business</label> <select name="language"
+							id="language" class="form-control" v-model="selectedCountry" @change="selectedNewCountry(selectedCountry)">
+							
+							<option v-for="option in country">{{option.countryName}}</option>
+
+						</select>
+
+					</div>
+
+					<div class="form-group">
+
+
+						<label>City of Business</label> <select v-model="selectedZone" class="form-control">
+
+							<option v-for="option in zone" v-bind:value="option.id">{{
+								option.zoneName}}</option>
+
+						</select>
+						<div v-for="option in zone">
+							<input :disabled="zoneStatus" type="radio" name="segment"
+								:value="option.id"> <label>{{option.zoneName}}</label><br>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="companyName">Number Of Employees</label> <input
+							type="text" v-model="companyTitle" class="form-control">
+					</div>
+
+					<div class="form-group">
+						<label for="companyName">Business Website</label> <input
+							type="text" v-model="companyTitle" class="form-control">
+					</div>
+
+				</div>
+
+
+			</div>
+			<hr>
+			<div class="row">
+
+				<div class="col-md-6">
+					<h2>Financial Details</h2>
+					<hr>
+
+					
+
+					<div class="form-group">
+						<label for="companyName">Asking Price</label> <input type="text"
+							v-model="companyTitle" class="form-control">
+					</div>
+
+
+
+					<div class="form-group">
+
+						<label for="companyName">Turn Over </label> <input type="text"
+							v-model="turnOver" class="form-control">
+					</div>
+
+					<div class="form-group">
+
+
+						<label>Turn Over Term</label> <select class="form-control">
+
+							<option v-for="option in zone" v-bind:value="option.id">{{
+								option.zoneName}}</option>
+
+						</select>
+						<div v-for="option in zone">
+							<input :disabled="zoneStatus" type="radio" name="segment"
+								:value="option.id"> <label>{{option.zoneName}}</label><br>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+
+						<label for="companyName">Net Profit </label> <input type="text"
+							v-model="turnOver" class="form-control">
+					</div>
+
+					<div class="form-group">
+
+
+						<label>Net Profit Term</label> <select class="form-control">
+
+							<option v-for="option in zone" v-bind:value="option.id">{{
+								option.zoneName}}</option>
+
+						</select>
+						<div v-for="option in zone">
+							<input :disabled="zoneStatus" type="radio" name="segment"
+								:value="option.id"> <label>{{option.zoneName}}</label><br>
+						</div>
+					</div>
+
+
+				</div>
+
+
+
+				<div class="col-md-6">
+					<h2>Functional Details</h2>
+					<hr>
+
+					<div class="form-group">
+						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+						<label for="vehicle1"> Treat As Confidential</label><br>
+					</div>
+
+					<div class="form-group">
+						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+						<label for="vehicle1"> Business is Relocatable</label><br>
+					</div>
+
+					<div class="form-group">
+						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+						<label for="vehicle1"> Feature this Business</label><br>
+					</div>
+
+
+
+				</div>
+			</div>
+
+
+
+		</div>
+		<!-- <div class="form-group">
+                                    <div class="add-photo">
+                                        <input type="file" name="add-photo" id="add-photo" class="inputfile form-control inputfile-4" data-multiple-caption="{count} files selected" multiple />
+                                        <label for="add-photo"><i class="fa fa-camera" aria-hidden="true"></i> <span>Add Photo</span></label>
+                                    </div>
+                                </div> -->
+		<!-- <input type="submit" value="Send Request" class="btn btn-primary"> -->
+
+	</div>
+</div>
+<!-- add-agent -->
+
+
+
+<!-- <div id="myModal" class="modal fade" role="dialog">
+	<br> <br> <br> <br>
+	<div class="modal-dialog">
+
+
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			</div>
+			<div class="modal-body">
+        <?php echo $this->partial("board_create_company_form") ?>
+      </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+
+	</div>
+</div> -->
+
+<script>
+    let create_listing = new Vue({
+        el:"#create_listing",
+        data() {
+            return {
+                createdCompany: [],
+                selectedCompany:"",
+                selectedCountry:"",
+				selectedBusinessState:10,
+                isShowNextFieldset:false,
+				companyTitle:'',
+				companyProfile:'',
+				turnOver:"",
+
+
+				//Predef
+				businessType:[],
+				businessSegment:[],
+				country:[],
+				zone:[],
+				businessState:[],
+				baseCategory:[],
+
+				//Listing Details
+				selectedCompanyName:"",
+				selectedBusinessType:"",
+
+
+
+            }
+        },
+
+        mounted () {
+            // this.getCreatedCompany();
+			this.getBusinessType();
+			this.getBusinessSegment();
+			this.getCountry();
+			this.getBusinessState();
+
+        },
+
+        computed:{
+            isSelectedCompany(){
+                if(this.selectedCompany == ""){
+
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+			zoneStatus(){
+				if(selectedCountry == ""){
+					return true;
+				}else{
+					return false;
+				}
+			},
+			selectedCompanName(){
+				if(this.selectedCompany != ""){
+					return this.setSelectedCompanyName;
+
+				}
+			}
+        },
+        methods: {
+
+			setSelectedCompanyName(name){
+				this.selectedCompanyName = name;
+			 return this.selectedCompanyName;
+			},
+            changeSelectedCompany(select){
+                if(this.selectedCompany != ""){
+
+                }
+            },
+
+            getCountry(){
+				axios.get("/application/get-country").then(res=>{
+					if(res.status == 200){
+
+						this.country = res.data.data;
+						// console.log(this.country[0].countryName);
+						// this.getZone();
+					}
+				}).catch(err=>{
+
+				});
+            },
+			selectedNewCountry(id){
+				this.getZone(id);
+			},
+
+            getZone(id){
+                axios.get("/application/get-zone").then(res=>{
+					if(res.ststus == 200){
+						this.zone = res.data.data;
+					}
+				}).catch(err=>{
+
+				});
+                },
+
+			getBusinessState(){
+				axios.get("/application/get-business-state").then(res=>{
+					if(res.status == 200){
+						this.businessState = res.data.data;
+					}
+				}).catch();
+			},
+			getBusinessType(){
+				axios.get("/application/get-listing-business-type").then(res=>{
+						if(res.status == 200){
+							this.businessType = res.data.data;
+						}
+					}).catch();
+			},
+
+			getBusinessSegment(){
+				axios.get("/application/get-listing-business-segment").then(res=>{
+						if(res.status == 200){
+							this.businessSegment = res.data.data;
+						}
+					}).catch();
+			},
+
+			getBaseCategory(){
+				axios.get("/application/get-base-listing-category").then(res=>{
+					if(res.status == 200){
+						this.baseCategory = res.data.data;
+					}
+				}).catch();
+			},
+
+			getChildCategory(){
+
+			},
+            getCreatedCompany() {
+                axios.get("/dashboard/board/getcreatedcompany").then(res=>{
+						if(res.status == 200){
+							this.createdCompany = res.data.data;
+						}
+					}).catch();
+            }
+        },
+    });
+</script>

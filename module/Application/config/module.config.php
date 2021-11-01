@@ -35,11 +35,12 @@ return [
             'application' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/application[/:action]',
+                    'route' => '/application[/:action[/:id]]',
                     'defaults' => [
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller' => 'Index',
-                        'action' => 'index'
+                        'action' => 'index',
+                        "id"=>'[a-zA-Z0-9_-]*'
                     ]
                 ]
             ],

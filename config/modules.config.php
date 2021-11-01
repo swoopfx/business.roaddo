@@ -30,9 +30,9 @@ return [
     'AcMailer',
     'DoctrineModule',
     'DoctrineORMModule',
-    'Application',
     "General",
     "User",
+    'Application',
     "Valuation",
     "Board",
 ];

@@ -37,6 +37,11 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
         $viewModel = new ViewModel();
         return $viewModel;
     }
+    
+    public function createListingsAction(){
+        $viewModel = new ViewModel();
+        return $viewModel;
+    }
 
     public function createCompanyAction()
     {
@@ -158,6 +163,25 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
         $jsonModel->setVariables([
             "data" => $data
         ]);
+        return $jsonModel;
+    }
+
+    public function postcreatelistingAction()
+    {
+        $jsonModel = new JsonModel();
+        $request = $this->getRequest();
+        $response = $this->getResponse();
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            $inputFilter = new InputFilter();
+            if ($inputFilter->isValid()) {
+                
+                $jsonModel->setVariables([
+//                     "data"=>$e
+                ]);
+            }
+           
+        } else {}
         return $jsonModel;
     }
 

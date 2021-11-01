@@ -32,6 +32,12 @@ class ListingsCategory
      *
      */
     private $id;
+    
+    /**
+     * @ORM\Column(name="lcname", nullable=false)
+     * @var string
+     */
+    private $name;
 
     /**
      * One Category has Many Categories.
@@ -57,5 +63,107 @@ class ListingsCategory
      * @var \DateTime
      */
     private $updatedOn;
+    /**
+     * @return the $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return the $name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return the $children
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @return the $parent
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @return the $createdOn
+     */
+    public function getCreatedOn()
+    {
+        return $this->createdOn;
+    }
+
+    /**
+     * @return the $updatedOn
+     */
+    public function getUpdatedOn()
+    {
+        return $this->updatedOn;
+    }
+
+    /**
+     * @param number $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @param field_type $children
+     */
+    public function setChildren($children)
+    {
+        $this->children = $children;
+        return $this;
+    }
+
+    /**
+     * @param field_type $parent
+     */
+    public function setParent($parent)
+    {
+        $this->parent = $parent;
+        return $this;
+    }
+
+    /**
+     * @param DateTime $createdOn
+     */
+    public function setCreatedOn($createdOn)
+    {
+        $this->createdOn = $createdOn;
+        return $this;
+    }
+
+    /**
+     * @param DateTime $updatedOn
+     */
+    public function setUpdatedOn($updatedOn)
+    {
+        $this->updatedOn = $updatedOn;
+        return $this;
+    }
+
 }
 
