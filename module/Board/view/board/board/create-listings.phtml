@@ -68,18 +68,20 @@ echo $this->headtitle("Create listings");
 					<hr>
 
 					<div class="form-group">
-						<label for="companyName">Business Title</label> <input type="text"
-							v-model="companyTitle" class="form-control">
+						<label for="companyName">Name Of Business</label> <input type="text"
+							v-model="businessTitle" class="form-control">
 					</div>
 
 
 
 					<div class="form-group">
 
-						<label for="companyName">Business Information</label>
-						<textarea type="textarea" id="editor" v-model="companyProfile"
+						<label for="companyName">Business Information/Profile</label>
+						<textarea type="textarea" id="editor" v-model="businessProfile"
 							class="form-control"></textarea>
 					</div>
+
+					
 
 
 
@@ -94,16 +96,16 @@ echo $this->headtitle("Create listings");
 					</div>
 
 
-					<div class="form-group">
-						<label>Listing Name</label> <input type="text"
-							class="form-control" placeholder="Listing Name">
-					</div>
+					
 				</div>
 				<div class="col-md-6">
 
 					<div class="form-group">
+
+
 						<label>Business Category</label><br>
-						<button class="btn btn-primary btn-sm" @click="">Add Category</button>
+						<button class="btn btn-primary btn-sm" data-toggle="modal"
+							data-target="#myModal" @click="beginCategorySession()">Add Category</button>
 						<!-- <div v-for="option in businessSegment">
 							<input type="radio" name="segment" :value="option.id"> <label>{{option.segment}}</label><br>
 						</div> -->
@@ -112,14 +114,14 @@ echo $this->headtitle("Create listings");
 					<div class="form-group">
 						<label>Business Segment</label>
 						<div v-for="option in businessSegment">
-							<input type="radio" name="segment" :value="option.id"> <label>{{option.segment}}</label><br>
+							<input type="radio"  v-model="selectedBUsinessSegment" name="segment" :value="option.id"> <label>{{option.segment}}</label><br>
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label>Status Of Business</label>
 						<div v-for="option in businessState">
-							<input type="radio" name="segment" :value="option.id"> <label>{{option.state}}</label><br>
+							<input type="radio" name="segment" v-model="selectedStatusOfBusiness" :id="option.id" :value="option.id"> <label>{{option.state}}</label><br>
 						</div>
 					</div>
 
@@ -137,11 +139,10 @@ echo $this->headtitle("Create listings");
 
 					<div v-if="zone.length" class="form-group">
 
-						<label>City of Business</label> <select 
-							name="city" id="language" class="form-control"
-							v-model="selectedZone">
+						<label>City of Business</label> <select name="city" id="language"
+							class="form-control" v-model="selectedZone">
 
-							<option v-for="option in zone">{{option.zoneName}}</option>
+							<option v-for="option in zone" :value="{id: option.id, name: option.zoneName}" >{{option.zoneName}}</option>
 
 						</select>
 
@@ -149,13 +150,13 @@ echo $this->headtitle("Create listings");
 
 
 					<div class="form-group">
-						<label >Number Of Employees</label> <input
-							type="number" ref="numberOfEmployees" class="form-control">
+						<label>Number Of Employees</label> <input type="number"
+							ref="numberOfEmployees" v-model="numberOfEmployees" class="form-control">
 					</div>
 
 					<div class="form-group">
 						<label for="companyName">Business Website</label> <input
-							type="url" ref="businessWebsite" class="form-control">
+							type="url" ref="businessWebsite" v-model="businessWebsite" class="form-control">
 					</div>
 
 				</div>
@@ -173,24 +174,23 @@ echo $this->headtitle("Create listings");
 
 					<div class="form-group">
 						<label for="companyName">Asking Price</label> <input type="text"
-							v-model="companyTitle" class="form-control">
+							v-model="askingPrice" class="form-control">
 					</div>
 
 
 
-					<div class="form-group">
+					<!-- <div class="form-group">
 
 						<label for="companyName">Turn Over </label> <input type="text"
 							v-model="turnOver" class="form-control">
-					</div>
+					</div> -->
 
 					<div v-if="turnOverTerm.length" class="form-group">
 
 
-					<label>Turn Over Term</label>	
-					<div v-for="option in turnOverTerm">
-							<input type="radio" name="segment"
-								:value="option.id"> <label>{{option.term}}</label><br>
+						<label>Turn Over Term</label>
+						<div v-for="option in turnOverTerm">
+							<input :id="option.id" v-model="selectetTurnOverTerm" type="radio" name="segment" :value="option.id"> <label>{{option.term}}</label><br>
 						</div>
 					</div>
 
@@ -206,8 +206,7 @@ echo $this->headtitle("Create listings");
 
 						<label>Net Profit Term</label>
 						<div v-for="option in turnOverTerm">
-							<input type="radio" name="segment"
-								:value="option.id"> <label>{{option.term}}</label><br>
+							<input :id="option.id" v-model="selectetNetProfitTerm" type="radio" name="segment" :value="option.id"> <label>{{option.term}}</label><br>
 						</div>
 					</div>
 
@@ -221,17 +220,17 @@ echo $this->headtitle("Create listings");
 					<hr>
 
 					<div class="form-group">
-						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+						<input v-model="isConfidential" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
 						<label for="vehicle1"> Treat As Confidential</label><br>
 					</div>
 
 					<div class="form-group">
-						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+						<input v-model="isRelocateBusiness" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
 						<label for="vehicle1"> Business is Relocatable</label><br>
 					</div>
 
 					<div class="form-group">
-						<input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+						<input v-model="isFeatureBUsiness" type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
 						<label for="vehicle1"> Feature this Business</label><br>
 					</div>
 
@@ -251,33 +250,43 @@ echo $this->headtitle("Create listings");
                                 </div> -->
 		<!-- <input type="submit" value="Send Request" class="btn btn-primary"> -->
 
+
+		<div id="myModal" class="modal fade" role="dialog">
+			<br> <br> <br>
+			<div class="modal-dialog">
+
+
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+					</div>
+					<div class="modal-body">
+						<div class="form-group" v-if="baseCategory.length">
+						<label>Country of Category</label> <select class="form-control" v-model="selectedCategory">
+
+							<option v-for="option in baseCategory" :value="option.id">{{option.name}}</option>
+
+						</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+						<button type="button" class="btn btn-primary" @click="addToSelectedCategory(selectedCategory)">Add Category</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
 	</div>
 </div>
 <!-- add-agent -->
 
 
 
-<!-- <div id="myModal" class="modal fade" role="dialog">
-	<br> <br> <br> <br>
-	<div class="modal-dialog">
 
-
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-
-			</div>
-			<div class="modal-body">
-        <?php echo $this->partial("board_create_company_form") ?>
-      </div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-
-	</div>
-</div> -->
-
+<script src="/js/base64_coder.js"></script>
 <script>
     let create_listing = new Vue({
         el:"#create_listing",
@@ -285,7 +294,7 @@ echo $this->headtitle("Create listings");
             return {
 
 				isLoadiningZone:false,
-
+				
 
                 createdCompany: [],
                 selectedCompany:"",
@@ -294,9 +303,20 @@ echo $this->headtitle("Create listings");
 				selectedBusinessState:10,
                 isShowNextFieldset:false,
 				companyTitle:'',
+				businessTitle:"",
+				businessProfile:"",
 				companyProfile:'',
 				turnOver:"",
-
+				selectetTurnOverTerm:"",
+				isRelocateBusiness:false,
+				isFeatureBUsiness:false,
+				isConfidential:false,
+				selectetNetProfitTerm:"",
+				askingPrice:"",
+				businessWebsite:"",
+				numberOfEmployees:"",
+				selectedStatusOfBusiness:"",
+				selectedBUsinessSegment:10,
 
 				//Predef
 				businessType:[],
@@ -313,10 +333,9 @@ echo $this->headtitle("Create listings");
 
 				//CategorySession;
 				isBeginCategorySession:false,
-				selectedCategory:[],
-
-
-
+				selectedCategory:"",
+				categoryList:[],
+				selectedCategorylist:[0],
             }
         },
 
@@ -327,7 +346,7 @@ echo $this->headtitle("Create listings");
 			this.getCountry();
 			this.getBusinessState();
 			this.getTurnOverTerm();
-
+			// this.getBaseCategory();
         },
 
         computed:{
@@ -444,9 +463,54 @@ echo $this->headtitle("Create listings");
 					}).catch();
             },
 
+			addToSelectedCategory(selected){
+				// console.log(selected);
+				
+				if(this.categoryList.indexOf(selected) === -1){
+					this.categoryList.push(selected);
+				}
+			},
+
 			beginCategorySession(){
-				this.
+				// this.
+				this.isBeginCategorySession = true;
+				this.getBaseCategory();
+			},
+
+
+			// post listing Details
+			validateListingForm(){
+
+			},
+			postlisting(){
+				let validate = this.validateListingForm();
+				if(validate){
+					this.businessProfile = tinymce.activeEditor.getContent();
+					let formData = new FormData();
+					formData.append("numberOfEmployees", this.$refs.numberOfEmployees.value);
+					// formData.append("isConfidential", this.isConfidential);
+					formData.append("numberOfEmployees", this.$refs.numberOfEmployees.value);
+					formData.append("numberOfEmployees", this.$refs.numberOfEmployees.value);
+					formData.append("numberOfEmployees", this.$refs.numberOfEmployees.value);
+					formData.append("numberOfEmployees", this.$refs.numberOfEmployees.value);
+					formData.append("country", this.country);
+					formData.append("selectedStatusOfBusiness", this.selectedStatusOfBusiness);
+					formData.append("selectedBUsinessSegment", this.selectedBUsinessSegment);
+					formData.append("selectedCategorylist", JSON.stringify(this.selectedCategorylist));
+					formData.append("isFeatureBUsiness", this.isFeatureBUsiness);
+					formData.append("isRelocateBusiness", this.isRelocateBusiness);
+					formData.append("isConfidential", this.isConfidential);
+					formData.append("businessTitle", this.businessTitle);
+					formData.append("businessProfile", Base64.encode(this.businessProfile));
+					axios.post("postlisting", formData).then(res=>{
+						if(res.status == 201){
+							window.location.reload();
+						}
+					}).catch();
+				}
 			}
         },
     });
+
+	
 </script>

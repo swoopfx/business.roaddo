@@ -67,28 +67,28 @@ return [
                  *
                  * Default value is an empty string
                  */
-                'from' => 'admin@baucars.com',
+                'from' => 'admin@adroitfinserv.com',
                 
                 /**
                  * From name to be displayed instead of from address.
                  *
                  * Default value is an empty string
                  */
-                'from_name' => 'Bau Cars Limited',
+                'from_name' => 'ROADDO',
                 
                 /**
                  * ReplyTo email address of the email.
                  *
                  * Default value is an empty string
                  */
-                'reply_to' => 'admin@baucars.com',
+                'reply_to' => 'admin@adroitfinserv.com',
                 
                 /**
                  * ReplyTo name to be displayed instead of from address.
                  *
                  * Default value is an empty string
                  */
-                'reply_to_name' => 'Bau Cars Limited',
+                'reply_to_name' => 'ROADDO',
                 
                 /**
                  * Destination addresses of sent emails.
@@ -210,14 +210,14 @@ return [
                  *
                  * Default value is localhost
                  */
-                'host' => 'smtp.mailtrap.io',
+                'host' => 'in-v3.mailjet.com',
                 
                 /**
                  * Port of the mail server.
                  *
                  * Default value is 25
                  */
-                'port' => 2525,
+                'port' => 587,
                 
                 /**
                  * The connection class used for authentication.
@@ -234,14 +234,14 @@ return [
                      *
                      * Default value is an empty string
                      */
-                    'username' => '0083a75ee91f96',
+                    'username' => '156bfcdd4f2a9675859f5f51d842f904',
                     
                     /**
                      * The SMTP authentication credential.
                      *
                      * Default value is an empty string
                      */
-                    'password' => '17c05d8483f2b4',
+                    'password' => '1121af6939696e374750c7c32dfdaf6f',
                     
                     /**
                      * This defines the encryption type to be used, 'ssl' or 'tls'.

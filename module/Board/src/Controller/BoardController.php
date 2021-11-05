@@ -9,6 +9,7 @@ use Laminas\InputFilter\InputFilter;
 use General\Service\GeneralService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
+use Application\Entity\Listings;
 
 class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
 {
@@ -37,8 +38,9 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
         $viewModel = new ViewModel();
         return $viewModel;
     }
-    
-    public function createListingsAction(){
+
+    public function createListingsAction()
+    {
         $viewModel = new ViewModel();
         return $viewModel;
     }
@@ -47,6 +49,31 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
     {
         $viewModel = new ViewModel();
         return $viewModel;
+    }
+
+    public function postlistingAction()
+    {
+        $em = $this->entityManager;
+        $jsonModel = new JsonModel();
+        $request = $this->getRequest();
+        $em = $this->entityManager;
+        $response = $this->getResponse();
+        if ($request->isPost()) {
+            $post = $request->getPost();
+            $inputFilter = new InputFilter();
+            
+            try {
+                $listingsEntity = new Listings();
+                $em->persist($listingsEntity);
+                $em->flush();
+            } catch (\Exception $e) {}
+        } else {
+            $response->setStatusCode(400);
+            $jsonModel->setVariables([
+                "error" => "Invalid Action"
+            ]);
+        }
+        return $jsonModel;
     }
 
     public function postcreatecompanyAction()
@@ -176,11 +203,9 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
             $inputFilter = new InputFilter();
             if ($inputFilter->isValid()) {
                 
-                $jsonModel->setVariables([
-//                     "data"=>$e
+                $jsonModel->setVariables([                    // "data"=>$e
                 ]);
             }
-           
         } else {}
         return $jsonModel;
     }

@@ -3,6 +3,8 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Retail Shop Business;
@@ -41,6 +43,7 @@ class ListingsCategory
 
     /**
      * One Category has Many Categories.
+     * @var Collection
      * @ORM\OneToMany(targetEntity="ListingsCategory", mappedBy="parent")
      */
     private $children;
@@ -63,6 +66,10 @@ class ListingsCategory
      * @var \DateTime
      */
     private $updatedOn;
+    
+    public function __construct(){
+       $this->children = new ArrayCollection();
+    }
     /**
      * @return the $id
      */

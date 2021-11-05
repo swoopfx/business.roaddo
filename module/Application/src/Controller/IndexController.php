@@ -170,17 +170,29 @@ class IndexController extends AbstractActionController
         $jsonModel = new JsonModel();
         $em = $this->entityManager;
         $repo = $em->getRepository(ListingsCategory::class);
+        
+        // $query = $em->createQuery("SELECT c, p FROM Application\Entity\ListingsCategory c JOIN c.parent WHERE c.parent = :parent ");
+        // $query->setParameters([
+        // "parent"=>NULL
+        // ]);
         $data = $repo->createQueryBuilder("s")
             ->select([
-            "s"
+            "s",
+            "p"
+        
         ])
-            ->where("s.parent = :parent")
-            ->setParameters([
-            "parent" => NULL
-        ])
+            ->leftJoin("s.parent", "p")
+            ->where("s.parent is NULL")
             ->getQuery()
             ->getResult(Query::HYDRATE_ARRAY);
+        $jsonModel->setVariables([
+            "data" => $data
+        ]);
         return $jsonModel;
+    }
+    
+    public function getCategoryDetailAction(){
+//         $jsonModel = new Json
     }
 
     public function getChildListingCategoryAction()
