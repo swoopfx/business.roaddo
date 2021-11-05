@@ -10,6 +10,9 @@ use General\Service\GeneralService;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Application\Entity\Listings;
+use General\Entity\Zone;
+use General\Entity\Country;
+use Application\Entity\ListingBusinessState;
 
 class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
 {
@@ -54,19 +57,40 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
     public function postlistingAction()
     {
         $em = $this->entityManager;
+        $user = $this->identity();
         $jsonModel = new JsonModel();
         $request = $this->getRequest();
         $em = $this->entityManager;
         $response = $this->getResponse();
         if ($request->isPost()) {
             $post = $request->getPost();
+            $poste = $post;
             $inputFilter = new InputFilter();
             
             try {
                 $listingsEntity = new Listings();
+                $listingsEntity->setAskingPrice($poste["askingPrice"])
+                    ->setBusinessDetails($poste)
+                    ->setCity($em->find(Zone::class, $poste["selectedZone"]))
+                    ->setCountry($em->find(Country::class, $poste["country"]))
+                    ->setCreatedOn(new \DateTime())
+//                     ->setCurrency("")
+                    ->setIsActive(TRUE)
+                    ->setIsConfidential($poste["isConfidential"])
+                    ->setIsFeatured($post["isFeatureBUsiness"])
+                    ->setListedBy($user)
+                    ->setListingBusinessState($em->find(ListingBusinessState::class, $poste["selectedStatusOfBusiness"]));
                 $em->persist($listingsEntity);
                 $em->flush();
-            } catch (\Exception $e) {}
+                
+                $response->setStatusCode(201);
+            } catch (\Exception $e) {
+                $response->setStatusCode(400);
+                $jsonModel->setVariables([
+                    "error" => "We cannot process now please try again later",
+                    "data" => $e->getTrace()
+                ]);
+            }
         } else {
             $response->setStatusCode(400);
             $jsonModel->setVariables([
@@ -203,8 +227,8 @@ class BoardController extends \Laminas\Mvc\Controller\AbstractActionController
             $inputFilter = new InputFilter();
             if ($inputFilter->isValid()) {
                 
-                $jsonModel->setVariables([                    // "data"=>$e
-                ]);
+                $jsonModel->setVariables([ // "data"=>$e
+]);
             }
         } else {}
         return $jsonModel;
